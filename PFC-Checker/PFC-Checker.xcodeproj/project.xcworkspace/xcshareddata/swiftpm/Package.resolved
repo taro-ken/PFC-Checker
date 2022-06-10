@@ -1,0 +1,61 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Charts",
+        "repositoryURL": "https://github.com/danielgindi/Charts",
+        "state": {
+          "branch": "master",
+          "revision": "b38b8d45a8cbda9f0f2a3566778ed114f06056b7",
+          "version": null
+        }
+      },
+      {
+        "package": "RealmDatabase",
+        "repositoryURL": "https://github.com/realm/realm-core",
+        "state": {
+          "branch": null,
+          "revision": "fd48276f88f3d55dbdcdc9e8cbf32541811d5865",
+          "version": "12.1.0"
+        }
+      },
+      {
+        "package": "Realm",
+        "repositoryURL": "https://github.com/realm/realm-swift",
+        "state": {
+          "branch": "master",
+          "revision": "dbaf1f86f5549065b627fb635afc1e8071bd1b69",
+          "version": null
+        }
+      },
+      {
+        "package": "RxSwift",
+        "repositoryURL": "https://github.com/ReactiveX/RxSwift",
+        "state": {
+          "branch": "main",
+          "revision": "e0ab8c4e18baf6679a65b325155923276b832687",
+          "version": null
+        }
+      },
+      {
+        "package": "swift-algorithms",
+        "repositoryURL": "https://github.com/apple/swift-algorithms",
+        "state": {
+          "branch": null,
+          "revision": "b14b7f4c528c942f121c8b860b9410b2bf57825e",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "swift-numerics",
+        "repositoryURL": "https://github.com/apple/swift-numerics",
+        "state": {
+          "branch": null,
+          "revision": "0a5bc04095a675662cf24757cc0640aa2204253b",
+          "version": "1.0.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
