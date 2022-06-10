@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		B4083A8A2853607800853E19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083A892853607800853E19 /* AppDelegate.swift */; };
 		B4083A8C2853607800853E19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083A8B2853607800853E19 /* SceneDelegate.swift */; };
-		B4083A8E2853607800853E19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083A8D2853607800853E19 /* ViewController.swift */; };
-		B4083A912853607800853E19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4083A8F2853607800853E19 /* Main.storyboard */; };
 		B4083A932853607A00853E19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4083A922853607A00853E19 /* Assets.xcassets */; };
 		B4083A962853607A00853E19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4083A942853607A00853E19 /* LaunchScreen.storyboard */; };
 		B4083AA12853607B00853E19 /* PFC_CheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AA02853607B00853E19 /* PFC_CheckerTests.swift */; };
@@ -22,6 +20,19 @@
 		B4083AC22853615A00853E19 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B4083AC12853615A00853E19 /* Realm */; };
 		B4083AC42853615A00853E19 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B4083AC32853615A00853E19 /* RealmSwift */; };
 		B4083AC72853619F00853E19 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = B4083AC62853619F00853E19 /* Charts */; };
+		B4083ACA2853638900853E19 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AC92853638900853E19 /* UITextField+.swift */; };
+		B4083ACD285363A300853E19 /* PFCcomponentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083ACC285363A300853E19 /* PFCcomponentModel.swift */; };
+		B4083ADE285363B200853E19 /* HomePFC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4083AD0285363B200853E19 /* HomePFC.storyboard */; };
+		B4083ADF285363B200853E19 /* HomePFCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AD2285363B200853E19 /* HomePFCViewController.swift */; };
+		B4083AE0285363B200853E19 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AD4285363B200853E19 /* EditViewController.swift */; };
+		B4083AE1285363B200853E19 /* Edit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4083AD5285363B200853E19 /* Edit.storyboard */; };
+		B4083AE2285363B200853E19 /* AddInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4083AD7285363B200853E19 /* AddInfo.storyboard */; };
+		B4083AE3285363B200853E19 /* AddInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AD8285363B200853E19 /* AddInfoViewController.swift */; };
+		B4083AE4285363B200853E19 /* PFCListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083ADA285363B200853E19 /* PFCListCell.swift */; };
+		B4083AE5285363B200853E19 /* PFCList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4083ADB285363B200853E19 /* PFCList.storyboard */; };
+		B4083AE6285363B200853E19 /* PFCListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4083ADC285363B200853E19 /* PFCListCell.xib */; };
+		B4083AE7285363B200853E19 /* PFCListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083ADD285363B200853E19 /* PFCListViewController.swift */; };
+		B4083AEA285363C400853E19 /* PFCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AE9285363C400853E19 /* PFCViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,8 +56,6 @@
 		B4083A862853607800853E19 /* PFC-Checker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PFC-Checker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4083A892853607800853E19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4083A8B2853607800853E19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B4083A8D2853607800853E19 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B4083A902853607800853E19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B4083A922853607A00853E19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4083A952853607A00853E19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4083A972853607A00853E19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,6 +64,19 @@
 		B4083AA62853607B00853E19 /* PFC-CheckerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PFC-CheckerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4083AAA2853607B00853E19 /* PFC_CheckerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PFC_CheckerUITests.swift; sourceTree = "<group>"; };
 		B4083AAC2853607B00853E19 /* PFC_CheckerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PFC_CheckerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B4083AC92853638900853E19 /* UITextField+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
+		B4083ACC285363A300853E19 /* PFCcomponentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFCcomponentModel.swift; sourceTree = "<group>"; };
+		B4083AD1285363B200853E19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/HomePFC.storyboard; sourceTree = "<group>"; };
+		B4083AD2285363B200853E19 /* HomePFCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePFCViewController.swift; sourceTree = "<group>"; };
+		B4083AD4285363B200853E19 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		B4083AD5285363B200853E19 /* Edit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Edit.storyboard; sourceTree = "<group>"; };
+		B4083AD7285363B200853E19 /* AddInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddInfo.storyboard; sourceTree = "<group>"; };
+		B4083AD8285363B200853E19 /* AddInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInfoViewController.swift; sourceTree = "<group>"; };
+		B4083ADA285363B200853E19 /* PFCListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFCListCell.swift; sourceTree = "<group>"; };
+		B4083ADB285363B200853E19 /* PFCList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PFCList.storyboard; sourceTree = "<group>"; };
+		B4083ADC285363B200853E19 /* PFCListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PFCListCell.xib; sourceTree = "<group>"; };
+		B4083ADD285363B200853E19 /* PFCListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFCListViewController.swift; sourceTree = "<group>"; };
+		B4083AE9285363C400853E19 /* PFCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFCViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,10 +135,12 @@
 			children = (
 				B4083A892853607800853E19 /* AppDelegate.swift */,
 				B4083A8B2853607800853E19 /* SceneDelegate.swift */,
-				B4083A8D2853607800853E19 /* ViewController.swift */,
-				B4083A8F2853607800853E19 /* Main.storyboard */,
+				B4083AC82853638900853E19 /* Extension */,
 				B4083A922853607A00853E19 /* Assets.xcassets */,
+				B4083ACB285363A300853E19 /* Model */,
 				B4083A942853607A00853E19 /* LaunchScreen.storyboard */,
+				B4083AE8285363C400853E19 /* ViewModel */,
+				B4083ACE285363B100853E19 /* View */,
 				B4083A972853607A00853E19 /* Info.plist */,
 			);
 			path = "PFC-Checker";
@@ -137,6 +161,79 @@
 				B4083AAC2853607B00853E19 /* PFC_CheckerUITestsLaunchTests.swift */,
 			);
 			path = "PFC-CheckerUITests";
+			sourceTree = "<group>";
+		};
+		B4083AC82853638900853E19 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B4083AC92853638900853E19 /* UITextField+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		B4083ACB285363A300853E19 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B4083ACC285363A300853E19 /* PFCcomponentModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B4083ACE285363B100853E19 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B4083ACF285363B200853E19 /* Home */,
+				B4083AD3285363B200853E19 /* Edit */,
+				B4083AD6285363B200853E19 /* Add */,
+				B4083AD9285363B200853E19 /* List */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B4083ACF285363B200853E19 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B4083AD0285363B200853E19 /* HomePFC.storyboard */,
+				B4083AD2285363B200853E19 /* HomePFCViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B4083AD3285363B200853E19 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				B4083AD4285363B200853E19 /* EditViewController.swift */,
+				B4083AD5285363B200853E19 /* Edit.storyboard */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		B4083AD6285363B200853E19 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				B4083AD7285363B200853E19 /* AddInfo.storyboard */,
+				B4083AD8285363B200853E19 /* AddInfoViewController.swift */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		B4083AD9285363B200853E19 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				B4083ADA285363B200853E19 /* PFCListCell.swift */,
+				B4083ADB285363B200853E19 /* PFCList.storyboard */,
+				B4083ADC285363B200853E19 /* PFCListCell.xib */,
+				B4083ADD285363B200853E19 /* PFCListViewController.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		B4083AE8285363C400853E19 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B4083AE9285363C400853E19 /* PFCViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,9 +353,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4083AE6285363B200853E19 /* PFCListCell.xib in Resources */,
+				B4083AE2285363B200853E19 /* AddInfo.storyboard in Resources */,
+				B4083AE1285363B200853E19 /* Edit.storyboard in Resources */,
+				B4083AE5285363B200853E19 /* PFCList.storyboard in Resources */,
+				B4083ADE285363B200853E19 /* HomePFC.storyboard in Resources */,
 				B4083A962853607A00853E19 /* LaunchScreen.storyboard in Resources */,
 				B4083A932853607A00853E19 /* Assets.xcassets in Resources */,
-				B4083A912853607800853E19 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,9 +384,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4083A8E2853607800853E19 /* ViewController.swift in Sources */,
+				B4083ACA2853638900853E19 /* UITextField+.swift in Sources */,
+				B4083AE4285363B200853E19 /* PFCListCell.swift in Sources */,
 				B4083A8A2853607800853E19 /* AppDelegate.swift in Sources */,
+				B4083AE0285363B200853E19 /* EditViewController.swift in Sources */,
 				B4083A8C2853607800853E19 /* SceneDelegate.swift in Sources */,
+				B4083ACD285363A300853E19 /* PFCcomponentModel.swift in Sources */,
+				B4083AEA285363C400853E19 /* PFCViewModel.swift in Sources */,
+				B4083ADF285363B200853E19 /* HomePFCViewController.swift in Sources */,
+				B4083AE7285363B200853E19 /* PFCListViewController.swift in Sources */,
+				B4083AE3285363B200853E19 /* AddInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,20 +430,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B4083A8F2853607800853E19 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B4083A902853607800853E19 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B4083A942853607A00853E19 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B4083A952853607A00853E19 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		B4083AD0285363B200853E19 /* HomePFC.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4083AD1285363B200853E19 /* Base */,
+			);
+			name = HomePFC.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -469,7 +577,7 @@
 				INFOPLIST_FILE = "PFC-Checker/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = HomePFC;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -481,7 +589,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -497,7 +605,7 @@
 				INFOPLIST_FILE = "PFC-Checker/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = HomePFC;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -509,7 +617,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
