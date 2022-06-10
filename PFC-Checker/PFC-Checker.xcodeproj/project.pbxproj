@@ -16,6 +16,12 @@
 		B4083AA12853607B00853E19 /* PFC_CheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AA02853607B00853E19 /* PFC_CheckerTests.swift */; };
 		B4083AAB2853607B00853E19 /* PFC_CheckerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AAA2853607B00853E19 /* PFC_CheckerUITests.swift */; };
 		B4083AAD2853607B00853E19 /* PFC_CheckerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AAC2853607B00853E19 /* PFC_CheckerUITestsLaunchTests.swift */; };
+		B4083ABB285360DF00853E19 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = B4083ABA285360DF00853E19 /* RxCocoa */; };
+		B4083ABD285360DF00853E19 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = B4083ABC285360DF00853E19 /* RxRelay */; };
+		B4083ABF285360DF00853E19 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B4083ABE285360DF00853E19 /* RxSwift */; };
+		B4083AC22853615A00853E19 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B4083AC12853615A00853E19 /* Realm */; };
+		B4083AC42853615A00853E19 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B4083AC32853615A00853E19 /* RealmSwift */; };
+		B4083AC72853619F00853E19 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = B4083AC62853619F00853E19 /* Charts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +62,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4083ABF285360DF00853E19 /* RxSwift in Frameworks */,
+				B4083AC72853619F00853E19 /* Charts in Frameworks */,
+				B4083ABD285360DF00853E19 /* RxRelay in Frameworks */,
+				B4083AC22853615A00853E19 /* Realm in Frameworks */,
+				B4083AC42853615A00853E19 /* RealmSwift in Frameworks */,
+				B4083ABB285360DF00853E19 /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +155,14 @@
 			dependencies = (
 			);
 			name = "PFC-Checker";
+			packageProductDependencies = (
+				B4083ABA285360DF00853E19 /* RxCocoa */,
+				B4083ABC285360DF00853E19 /* RxRelay */,
+				B4083ABE285360DF00853E19 /* RxSwift */,
+				B4083AC12853615A00853E19 /* Realm */,
+				B4083AC32853615A00853E19 /* RealmSwift */,
+				B4083AC62853619F00853E19 /* Charts */,
+			);
 			productName = "PFC-Checker";
 			productReference = B4083A862853607800853E19 /* PFC-Checker.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +235,11 @@
 				Base,
 			);
 			mainGroup = B4083A7D2853607800853E19;
+			packageReferences = (
+				B4083AB9285360DF00853E19 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				B4083AC02853615A00853E19 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				B4083AC52853619F00853E19 /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = B4083A872853607800853E19 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -604,6 +629,66 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B4083AB9285360DF00853E19 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		B4083AC02853615A00853E19 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		B4083AC52853619F00853E19 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B4083ABA285360DF00853E19 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4083AB9285360DF00853E19 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		B4083ABC285360DF00853E19 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4083AB9285360DF00853E19 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		B4083ABE285360DF00853E19 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4083AB9285360DF00853E19 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		B4083AC12853615A00853E19 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4083AC02853615A00853E19 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		B4083AC32853615A00853E19 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4083AC02853615A00853E19 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		B4083AC62853619F00853E19 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4083AC52853619F00853E19 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B4083A7E2853607800853E19 /* Project object */;
 }
