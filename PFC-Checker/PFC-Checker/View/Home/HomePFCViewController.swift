@@ -8,7 +8,7 @@
 import UIKit
 import Charts
 import RxSwift
-
+import BetterSegmentedControl
 
 final class HomePFCViewController: UIViewController {
     
@@ -32,6 +32,8 @@ final class HomePFCViewController: UIViewController {
     @IBOutlet weak var carbGramLabel: UILabel!
     @IBOutlet weak var carbCalLabel: UILabel!
     
+    
+    
     private let viewModel = PFCViewModel()
     private lazy var input: PFCViewModelInput = viewModel
     private lazy var output: PFCViewModelOutput = viewModel
@@ -47,23 +49,21 @@ final class HomePFCViewController: UIViewController {
         chartViewSetUp()
         chartView.isHidden = true
         outputBind()
+        BetterSegmentedControlSetUp()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         output.update()
     }
     
-    @IBAction func changedSegment(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
+    @objc func changedSegment(_ sender: BetterSegmentedControl) {
+        if sender.index == 0 {
             chartView.isHidden = true
             pfcStac.isHidden = false
-        case 1:
+        } else {
             chartView.isHidden = false
             chartViewSetUp()
             pfcStac.isHidden = true
-        default:
-            break
         }
     }
     
@@ -77,35 +77,36 @@ final class HomePFCViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBAction func tappedBMR(_ sender: Any) {
+        let vc = UIStoryboard.init(name: "BMR", bundle: nil).instantiateInitialViewController() as! BMRViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     private func outputBind() {
         output.models.bind(onNext: { [self] response in
             totalCalLabel.text = "\(response.map {$0.calorie}.reduce(0, +).description)kcal"
             proteinGramLabel.text = response.map {$0.protein}.reduce(0, +).description
             fatGramLabel.text = response.map {$0.fat}.reduce(0, +).description
             carbGramLabel.text = response.map {$0.carb}.reduce(0, +).description
-            
-            let totalC = response.map {$0.calorie}.reduce(0, +)
-            pChartValue = response.map {$0.protein}.reduce(0, +) * 4
-            fChartValue = response.map {$0.fat}.reduce(0, +) * 9
-            cChartValue = response.map {$0.carb}.reduce(0, +) * 4
-            
-            
+            let totalCal = response.map {$0.calorie}.reduce(0, +)
+            let totalP = response.map {$0.protein}.reduce(0, +) * 4
+            let totalF = response.map {$0.fat}.reduce(0, +) * 9
+            let totalC = response.map {$0.carb}.reduce(0, +) * 4
+            pChartValue = calculation.calculation(totalPFC: totalP, totalCal: totalCal)
+            fChartValue = calculation.calculation(totalPFC: totalF, totalCal: totalCal)
+            cChartValue = calculation.calculation(totalPFC: totalC, totalCal: totalCal)
+            proteinCalLabel.text = "\(totalP)kcal"
+            fatCalLabel.text = "\(totalF)kcal"
+            carbCalLabel.text = "\(totalC)kcal"
         }).disposed(by: disposeBug)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
 extension HomePFCViewController {
     //UIのセットアップ
     func uiSetUp() {
+        totalCalLabel.font = UIFont(name: "pingfanghk-Medium", size: 45)
+        
         mainTopVew.layer.cornerRadius = 20
         mainTopVew.layer.shadowOpacity = 0.5
         mainTopVew.layer.shadowRadius = 3
@@ -148,14 +149,12 @@ extension HomePFCViewController {
         proteinLabelView.layer.shadowRadius = 2
         proteinLabelView.layer.shadowColor = UIColor.gray.cgColor
         proteinLabelView.layer.shadowOffset = CGSize(width: 2, height: 2)
-    
+        
         fatLabelView.layer.cornerRadius = 20
         fatLabelView.layer.shadowOpacity = 0.5
         fatLabelView.layer.shadowRadius = 2
         fatLabelView.layer.shadowColor = UIColor.gray.cgColor
         fatLabelView.layer.shadowOffset = CGSize(width: 2, height: 2)
-        
-    
         
         carbLabelView.layer.cornerRadius = 20
         carbLabelView.layer.shadowOpacity = 0.5
@@ -163,35 +162,41 @@ extension HomePFCViewController {
         carbLabelView.layer.shadowColor = UIColor.gray.cgColor
         carbLabelView.layer.shadowOffset = CGSize(width: 2, height: 2)
         
-        
         addButton.addTarget(self, action: #selector(tapAddbutton), for: .touchUpInside)
     }
     
+    //BetterSegmentedControlのセットアップ
+    func BetterSegmentedControlSetUp() {
+        let noSelectedSegmentControl = BetterSegmentedControl(
+            frame: CGRect(x: 0, y: 0, width: 180.0, height: 30.0),
+            segments: LabelSegment.segments(withTitles: ["PFC(g)", "PFC(%)"],
+                                            normalTextColor: .black,
+                                            selectedTextColor: .white),
+            options:[.backgroundColor(.white),
+                     .indicatorViewBackgroundColor(UIColor.darkGray),
+                     .cornerRadius(15.0),
+                     .animationSpringDamping(1.0)])
+        noSelectedSegmentControl.addTarget(self, action: #selector(changedSegment(_:)), for: .valueChanged)
+        navigationItem.titleView = noSelectedSegmentControl
+    }
+    
+    //Chartsのセットアップ
     func chartViewSetUp() {
-        // 円グラフの中心に表示するタイトル
         self.chartView.centerText = "PFCバランス"
-        // グラフに表示するデータのタイトルと値
+        chartView.animate(xAxisDuration: 0.5)
         let dataEntries = [
-            PieChartDataEntry(value: Double(pChartValue), label: "タンパク質"),
-            PieChartDataEntry(value: Double(fChartValue), label: "脂質"),
-            PieChartDataEntry(value: Double(cChartValue), label: "炭水化物"),
+            PieChartDataEntry(value: Double(pChartValue) / 100, label: "タンパク質"),
+            PieChartDataEntry(value: Double(fChartValue) / 100, label: "脂質"),
+            PieChartDataEntry(value: Double(cChartValue) / 100, label: "炭水化物"),
         ]
         let dataSet = PieChartDataSet(entries: dataEntries, label: "")
-        // グラフの色
         dataSet.colors = ChartColorTemplates.vordiplom()
-        
-        // グラフのデータの値の色
         dataSet.valueTextColor = UIColor.black
-        // グラフのデータのタイトルの色
         dataSet.entryLabelColor = UIColor.black
         self.chartView.data = PieChartData(dataSet: dataSet)
-        // データを％表示にする
         let formatter = NumberFormatter()
         formatter.numberStyle = .percent
-        formatter.maximumFractionDigits = 2
-        formatter.multiplier = 1.0
         self.chartView.data?.setValueFormatter(DefaultValueFormatter(formatter: formatter))
-        self.chartView.usePercentValuesEnabled = true
         view.addSubview(self.chartView)
     }
 }

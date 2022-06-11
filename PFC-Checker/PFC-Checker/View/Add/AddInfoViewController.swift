@@ -28,11 +28,12 @@ final class AddInfoViewController: UIViewController {
     private lazy var input: PFCViewModelInput = viewModel
     private lazy var output: PFCViewModelOutput = viewModel
     private let disposeBug = DisposeBag()
-    var swichFlag:Bool = Bool()
+    var swichFlag:Bool = true
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        topBar.barTintColor = .white
         unitValueLabel.text = "1"
         bindInputStream()
     }
