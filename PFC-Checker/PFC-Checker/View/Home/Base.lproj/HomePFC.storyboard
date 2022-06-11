@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Rp-jS-twL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Rp-jS-twL">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,7 +11,7 @@
         <!--PFC計算-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomePFCViewController" customModule="PFCCal_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomePFCViewController" customModule="PFC_Checker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -87,21 +87,8 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system" title=""/>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yQ5-jg-Kw3">
-                                <rect key="frame" x="137.66666666666666" y="376.66666666666669" width="100" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="Kuu-4b-Vgt"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="g"/>
-                                    <segment title="％"/>
-                                </segments>
-                                <connections>
-                                    <action selector="changedSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="5fz-CJ-ekh"/>
-                                </connections>
-                            </segmentedControl>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="1CO-ys-Tz7">
-                                <rect key="frame" x="20" y="427.66666666666674" width="335" height="210"/>
+                                <rect key="frame" x="20" y="371.66666666666669" width="335" height="210.00000000000006"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3q-OS-15J">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="60"/>
@@ -180,7 +167,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="RlU-UA-dnX">
-                                                <rect key="frame" x="65" y="14.999999999999943" width="260" height="30"/>
+                                                <rect key="frame" x="65" y="15" width="260" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="800g" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t49-qI-PmH">
                                                         <rect key="frame" x="0.0" y="0.0" width="130" height="30"/>
@@ -265,33 +252,38 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YwZ-js-4IA" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="20" y="415.66666666666674" width="335" height="271.33333333333326"/>
+                                <rect key="frame" x="20" y="359.66666666666674" width="335" height="327.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="YwZ-js-4IA" firstAttribute="top" secondItem="lhg-Sg-9QA" secondAttribute="bottom" constant="8" id="07g-Le-kOO"/>
                             <constraint firstItem="EO1-8r-5nN" firstAttribute="top" secondItem="YwZ-js-4IA" secondAttribute="bottom" constant="31" id="4wV-HC-uDY"/>
-                            <constraint firstItem="YwZ-js-4IA" firstAttribute="top" secondItem="yQ5-jg-Kw3" secondAttribute="bottom" constant="8" id="74E-iV-4Ou"/>
+                            <constraint firstItem="1CO-ys-Tz7" firstAttribute="top" secondItem="lhg-Sg-9QA" secondAttribute="bottom" constant="20" id="DN3-Bg-ZPJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1CO-ys-Tz7" secondAttribute="trailing" constant="20" id="JRl-dl-uPJ"/>
                             <constraint firstItem="lhg-Sg-9QA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ONw-nh-uv7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EO1-8r-5nN" secondAttribute="bottom" constant="10" id="PYS-ro-aqr"/>
                             <constraint firstItem="EO1-8r-5nN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SaF-Xp-PUc"/>
                             <constraint firstItem="YwZ-js-4IA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="TvE-0C-xoS"/>
-                            <constraint firstItem="1CO-ys-Tz7" firstAttribute="top" secondItem="yQ5-jg-Kw3" secondAttribute="bottom" constant="20" id="d7K-2G-T6t"/>
-                            <constraint firstItem="yQ5-jg-Kw3" firstAttribute="top" secondItem="lhg-Sg-9QA" secondAttribute="bottom" constant="25" id="fv1-9W-65e"/>
                             <constraint firstItem="1CO-ys-Tz7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="iHs-uy-oI7"/>
                             <constraint firstItem="lhg-Sg-9QA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="ih2-5A-EyR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="YwZ-js-4IA" secondAttribute="trailing" constant="20" id="ip3-6B-m1f"/>
-                            <constraint firstItem="yQ5-jg-Kw3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="thn-VV-hc1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lhg-Sg-9QA" secondAttribute="trailing" constant="20" id="w3T-Ep-tIN"/>
                             <constraint firstItem="rdG-MQ-hUw" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.109606" id="ypz-QQ-21i"/>
                             <constraint firstItem="lhg-Sg-9QA" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="yya-j8-EkW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="PFC計算" id="Sg7-YE-LRN">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="opb-ax-mzp">
+                        <barButtonItem key="leftBarButtonItem" image="person.fill" catalog="system" id="vMC-nU-P5i">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="tappedBMR:" destination="BYZ-38-t0r" id="0Zd-u2-nPm"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="リスト" id="opb-ax-mzp">
+                            <color key="tintColor" systemColor="labelColor"/>
                             <connections>
                                 <action selector="tapShowListButton:" destination="BYZ-38-t0r" id="yVg-VY-QIe"/>
                             </connections>
@@ -343,7 +335,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

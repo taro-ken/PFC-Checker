@@ -33,6 +33,10 @@
 		B4083AE6285363B200853E19 /* PFCListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4083ADC285363B200853E19 /* PFCListCell.xib */; };
 		B4083AE7285363B200853E19 /* PFCListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083ADD285363B200853E19 /* PFCListViewController.swift */; };
 		B4083AEA285363C400853E19 /* PFCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AE9285363C400853E19 /* PFCViewModel.swift */; };
+		B4083AEE285372CA00853E19 /* BetterSegmentedControl in Frameworks */ = {isa = PBXBuildFile; productRef = B4083AED285372CA00853E19 /* BetterSegmentedControl */; };
+		B4083AF12853900D00853E19 /* BMRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AF02853900D00853E19 /* BMRViewController.swift */; };
+		B4083AF32853901D00853E19 /* BMR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4083AF22853901D00853E19 /* BMR.storyboard */; };
+		B4083AF5285439B800853E19 /* calculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AF4285439B800853E19 /* calculation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +81,9 @@
 		B4083ADC285363B200853E19 /* PFCListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PFCListCell.xib; sourceTree = "<group>"; };
 		B4083ADD285363B200853E19 /* PFCListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFCListViewController.swift; sourceTree = "<group>"; };
 		B4083AE9285363C400853E19 /* PFCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFCViewModel.swift; sourceTree = "<group>"; };
+		B4083AF02853900D00853E19 /* BMRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMRViewController.swift; sourceTree = "<group>"; };
+		B4083AF22853901D00853E19 /* BMR.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BMR.storyboard; sourceTree = "<group>"; };
+		B4083AF4285439B800853E19 /* calculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calculation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +95,7 @@
 				B4083AC72853619F00853E19 /* Charts in Frameworks */,
 				B4083ABD285360DF00853E19 /* RxRelay in Frameworks */,
 				B4083AC22853615A00853E19 /* Realm in Frameworks */,
+				B4083AEE285372CA00853E19 /* BetterSegmentedControl in Frameworks */,
 				B4083AC42853615A00853E19 /* RealmSwift in Frameworks */,
 				B4083ABB285360DF00853E19 /* RxCocoa in Frameworks */,
 			);
@@ -133,12 +141,9 @@
 		B4083A882853607800853E19 /* PFC-Checker */ = {
 			isa = PBXGroup;
 			children = (
-				B4083A892853607800853E19 /* AppDelegate.swift */,
-				B4083A8B2853607800853E19 /* SceneDelegate.swift */,
+				B4083AEB2853682600853E19 /* Resource */,
 				B4083AC82853638900853E19 /* Extension */,
-				B4083A922853607A00853E19 /* Assets.xcassets */,
 				B4083ACB285363A300853E19 /* Model */,
-				B4083A942853607A00853E19 /* LaunchScreen.storyboard */,
 				B4083AE8285363C400853E19 /* ViewModel */,
 				B4083ACE285363B100853E19 /* View */,
 				B4083A972853607A00853E19 /* Info.plist */,
@@ -167,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				B4083AC92853638900853E19 /* UITextField+.swift */,
+				B4083AF4285439B800853E19 /* calculation.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -182,6 +188,7 @@
 		B4083ACE285363B100853E19 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B4083AEF28538FF100853E19 /* BMR */,
 				B4083ACF285363B200853E19 /* Home */,
 				B4083AD3285363B200853E19 /* Edit */,
 				B4083AD6285363B200853E19 /* Add */,
@@ -236,6 +243,26 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		B4083AEB2853682600853E19 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				B4083A892853607800853E19 /* AppDelegate.swift */,
+				B4083A8B2853607800853E19 /* SceneDelegate.swift */,
+				B4083A922853607A00853E19 /* Assets.xcassets */,
+				B4083A942853607A00853E19 /* LaunchScreen.storyboard */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		B4083AEF28538FF100853E19 /* BMR */ = {
+			isa = PBXGroup;
+			children = (
+				B4083AF02853900D00853E19 /* BMRViewController.swift */,
+				B4083AF22853901D00853E19 /* BMR.storyboard */,
+			);
+			path = BMR;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -259,6 +286,7 @@
 				B4083AC12853615A00853E19 /* Realm */,
 				B4083AC32853615A00853E19 /* RealmSwift */,
 				B4083AC62853619F00853E19 /* Charts */,
+				B4083AED285372CA00853E19 /* BetterSegmentedControl */,
 			);
 			productName = "PFC-Checker";
 			productReference = B4083A862853607800853E19 /* PFC-Checker.app */;
@@ -336,6 +364,7 @@
 				B4083AB9285360DF00853E19 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				B4083AC02853615A00853E19 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				B4083AC52853619F00853E19 /* XCRemoteSwiftPackageReference "Charts" */,
+				B4083AEC285372C900853E19 /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */,
 			);
 			productRefGroup = B4083A872853607800853E19 /* Products */;
 			projectDirPath = "";
@@ -359,6 +388,7 @@
 				B4083AE5285363B200853E19 /* PFCList.storyboard in Resources */,
 				B4083ADE285363B200853E19 /* HomePFC.storyboard in Resources */,
 				B4083A962853607A00853E19 /* LaunchScreen.storyboard in Resources */,
+				B4083AF32853901D00853E19 /* BMR.storyboard in Resources */,
 				B4083A932853607A00853E19 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +424,8 @@
 				B4083ADF285363B200853E19 /* HomePFCViewController.swift in Sources */,
 				B4083AE7285363B200853E19 /* PFCListViewController.swift in Sources */,
 				B4083AE3285363B200853E19 /* AddInfoViewController.swift in Sources */,
+				B4083AF12853900D00853E19 /* BMRViewController.swift in Sources */,
+				B4083AF5285439B800853E19 /* calculation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -763,6 +795,14 @@
 				kind = branch;
 			};
 		};
+		B4083AEC285372C900853E19 /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gmarm/BetterSegmentedControl";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -795,6 +835,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B4083AC52853619F00853E19 /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = Charts;
+		};
+		B4083AED285372CA00853E19 /* BetterSegmentedControl */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4083AEC285372C900853E19 /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */;
+			productName = BetterSegmentedControl;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
