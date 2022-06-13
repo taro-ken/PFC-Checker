@@ -75,8 +75,7 @@ extension PFCListViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = UIStoryboard.init(name: "Edit", bundle: nil).instantiateInitialViewController() as! EditViewController
         vc.row = indexPath.row
-        self.present(vc, animated: true)
-        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
