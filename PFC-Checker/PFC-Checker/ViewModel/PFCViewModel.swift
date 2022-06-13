@@ -16,6 +16,11 @@ protocol PFCViewModelInput {
     func catchCount(row: Int, value: Int, flag: Bool)
     func catchFlag(row: Int, flag: Bool)
     func editInfo(name: String?,protein: Int,fat: Int,carb: Int,calorie: Int,unit: String?,unitValue: Int,flag: Bool,row: Int)
+    var pValue:BehaviorRelay<Double?> { get }
+    var fValue:BehaviorRelay<Double?> { get }
+    var cValue:BehaviorRelay<Double?> { get }
+    var calValue:BehaviorRelay<Double?> { get }
+    func calorieSet()
 }
 
 //ViewModelの出力に関するprotocol
@@ -103,6 +108,56 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
         
     }
     
+    var pValue = BehaviorRelay<Double?>(value: Double())
+    var fValue = BehaviorRelay<Double?>(value: Double())
+    var cValue = BehaviorRelay<Double?>(value: Double())
+    var calValue = BehaviorRelay<Double?>(value: Double())
+    
+   
+    func calorieSet() {
+        let pObservable =  Observable<Double>.create { [self] observer -> Disposable in
+            pValue.bind { response in
+                guard let response = response else {
+                    return
+                }
+                observer.onNext(response)
+                observer.onCompleted()
+            }.disposed(by: disposeBug)
+            return Disposables.create()
+        }
+        
+        let fObservable =  Observable<Double>.create { [self] observer -> Disposable in
+            fValue.bind { response in
+                guard let response = response else {
+                    return
+                }
+                observer.onNext(response)
+                observer.onCompleted()
+            }.disposed(by: disposeBug)
+            return Disposables.create()
+        }
+        
+        let cObservable =  Observable<Double>.create { [self] observer -> Disposable in
+            cValue.bind { response in
+                guard let response = response else {
+                    return
+                }
+                observer.onNext(response)
+                observer.onCompleted()
+            }.disposed(by: disposeBug)
+            return Disposables.create()
+        }
+        
+        Observable.combineLatest(pObservable,fObservable,cObservable).map{ [self] p,f,c in
+            let mcuMix = (p * 4)+(f * 9)+(c * 4)
+            print(p)
+            print(f)
+            print(c)
+            print(mcuMix)
+            calValue.accept(mcuMix)
+        }.subscribe().disposed(by: disposeBug)
+    }
+
     
     
     
@@ -111,6 +166,8 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
     lazy var changeModelsObservable = _changeModelsObservable.asObservable()
     private(set) var pfcModels:[PFCcomponentModel] = []
     private(set) var models = BehaviorRelay<[PFCcomponentModel]>(value: [])
+    
+    
     
     
     func update() {

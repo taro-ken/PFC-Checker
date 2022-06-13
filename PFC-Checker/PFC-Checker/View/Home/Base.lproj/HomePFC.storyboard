@@ -282,7 +282,7 @@
                                 <action selector="tappedBMR:" destination="BYZ-38-t0r" id="0Zd-u2-nPm"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="リスト" id="opb-ax-mzp">
+                        <barButtonItem key="rightBarButtonItem" title="リスト" image="list.bullet.indent" catalog="system" id="opb-ax-mzp">
                             <color key="tintColor" systemColor="labelColor"/>
                             <connections>
                                 <action selector="tapShowListButton:" destination="BYZ-38-t0r" id="yVg-VY-QIe"/>
@@ -335,6 +335,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="list.bullet.indent" catalog="system" width="128" height="74"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">

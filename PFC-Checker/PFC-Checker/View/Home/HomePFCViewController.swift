@@ -45,6 +45,8 @@ final class HomePFCViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem?.tintColor = .darkGray
         uiSetUp()
         chartViewSetUp()
         chartView.isHidden = true
@@ -69,7 +71,7 @@ final class HomePFCViewController: UIViewController {
     
     @objc func tapAddbutton() {
         let vc = UIStoryboard.init(name: "AddInfo", bundle: nil).instantiateInitialViewController() as! AddInfoViewController
-        self.present(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func tapShowListButton(_ sender: Any) {
@@ -83,22 +85,22 @@ final class HomePFCViewController: UIViewController {
     }
     
     private func outputBind() {
-        output.models.bind(onNext: { [self] response in
-            totalCalLabel.text = "\(response.map {$0.calorie}.reduce(0, +).description)kcal"
-            proteinGramLabel.text = response.map {$0.protein}.reduce(0, +).description
-            fatGramLabel.text = response.map {$0.fat}.reduce(0, +).description
-            carbGramLabel.text = response.map {$0.carb}.reduce(0, +).description
-            let totalCal = response.map {$0.calorie}.reduce(0, +)
-            let totalP = response.map {$0.protein}.reduce(0, +) * 4
-            let totalF = response.map {$0.fat}.reduce(0, +) * 9
-            let totalC = response.map {$0.carb}.reduce(0, +) * 4
-            pChartValue = calculation.calculation(totalPFC: totalP, totalCal: totalCal)
-            fChartValue = calculation.calculation(totalPFC: totalF, totalCal: totalCal)
-            cChartValue = calculation.calculation(totalPFC: totalC, totalCal: totalCal)
-            proteinCalLabel.text = "\(totalP)kcal"
-            fatCalLabel.text = "\(totalF)kcal"
-            carbCalLabel.text = "\(totalC)kcal"
-        }).disposed(by: disposeBug)
+//        output.models.bind(onNext: { [self] response in
+//            totalCalLabel.text = "\(response.map {$0.calorie}.reduce(0, +).description)kcal"
+//            proteinGramLabel.text = response.map {$0.protein}.reduce(0, +).description
+//            fatGramLabel.text = response.map {$0.fat}.reduce(0, +).description
+//            carbGramLabel.text = response.map {$0.carb}.reduce(0, +).description
+//            let totalCal = response.map {$0.calorie}.reduce(0, +)
+//            let totalP = response.map {$0.protein}.reduce(0, +) * 4
+//            let totalF = response.map {$0.fat}.reduce(0, +) * 9
+//            let totalC = response.map {$0.carb}.reduce(0, +) * 4
+//            pChartValue = calculation.calculation(totalPFC: totalP, totalCal: totalCal)
+//            fChartValue = calculation.calculation(totalPFC: totalF, totalCal: totalCal)
+//            cChartValue = calculation.calculation(totalPFC: totalC, totalCal: totalCal)
+//            proteinCalLabel.text = "\(totalP)kcal"
+//            fatCalLabel.text = "\(totalF)kcal"
+//            carbCalLabel.text = "\(totalC)kcal"
+//        }).disposed(by: disposeBug)
     }
 }
 

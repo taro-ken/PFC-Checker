@@ -37,6 +37,8 @@
 		B4083AF12853900D00853E19 /* BMRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AF02853900D00853E19 /* BMRViewController.swift */; };
 		B4083AF32853901D00853E19 /* BMR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4083AF22853901D00853E19 /* BMR.storyboard */; };
 		B4083AF5285439B800853E19 /* calculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AF4285439B800853E19 /* calculation.swift */; };
+		B4F8AD782855BB0200023556 /* Eureka in Frameworks */ = {isa = PBXBuildFile; productRef = B4F8AD772855BB0200023556 /* Eureka */; };
+		B4F8AD7A2856CC3700023556 /* EurekaTagString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AD792856CC3700023556 /* EurekaTagString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,15 +59,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B4083A862853607800853E19 /* PFC-Checker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PFC-Checker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4083A862853607800853E19 /* PFC-Checker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "PFC-Checker.app"; path = "/Users/kimotokentaro/Desktop/myswift/PFC-Checker/PFC-Checker/build/Debug-iphoneos/PFC-Checker.app"; sourceTree = "<absolute>"; };
 		B4083A892853607800853E19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4083A8B2853607800853E19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B4083A922853607A00853E19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4083A952853607A00853E19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4083A972853607A00853E19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B4083A9C2853607B00853E19 /* PFC-CheckerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PFC-CheckerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4083A9C2853607B00853E19 /* PFC-CheckerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "PFC-CheckerTests.xctest"; path = "/Users/kimotokentaro/Desktop/myswift/PFC-Checker/PFC-Checker/build/Debug-iphoneos/PFC-CheckerTests.xctest"; sourceTree = "<absolute>"; };
 		B4083AA02853607B00853E19 /* PFC_CheckerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PFC_CheckerTests.swift; sourceTree = "<group>"; };
-		B4083AA62853607B00853E19 /* PFC-CheckerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PFC-CheckerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4083AA62853607B00853E19 /* PFC-CheckerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "PFC-CheckerUITests.xctest"; path = "/Users/kimotokentaro/Desktop/myswift/PFC-Checker/PFC-Checker/build/Debug-iphoneos/PFC-CheckerUITests.xctest"; sourceTree = "<absolute>"; };
 		B4083AAA2853607B00853E19 /* PFC_CheckerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PFC_CheckerUITests.swift; sourceTree = "<group>"; };
 		B4083AAC2853607B00853E19 /* PFC_CheckerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PFC_CheckerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B4083AC92853638900853E19 /* UITextField+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 		B4083AF02853900D00853E19 /* BMRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMRViewController.swift; sourceTree = "<group>"; };
 		B4083AF22853901D00853E19 /* BMR.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BMR.storyboard; sourceTree = "<group>"; };
 		B4083AF4285439B800853E19 /* calculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calculation.swift; sourceTree = "<group>"; };
+		B4F8AD792856CC3700023556 /* EurekaTagString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EurekaTagString.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +101,7 @@
 				B4083AEE285372CA00853E19 /* BetterSegmentedControl in Frameworks */,
 				B4083AC42853615A00853E19 /* RealmSwift in Frameworks */,
 				B4083ABB285360DF00853E19 /* RxCocoa in Frameworks */,
+				B4F8AD782855BB0200023556 /* Eureka in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,18 +128,7 @@
 				B4083A882853607800853E19 /* PFC-Checker */,
 				B4083A9F2853607B00853E19 /* PFC-CheckerTests */,
 				B4083AA92853607B00853E19 /* PFC-CheckerUITests */,
-				B4083A872853607800853E19 /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		B4083A872853607800853E19 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B4083A862853607800853E19 /* PFC-Checker.app */,
-				B4083A9C2853607B00853E19 /* PFC-CheckerTests.xctest */,
-				B4083AA62853607B00853E19 /* PFC-CheckerUITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		B4083A882853607800853E19 /* PFC-Checker */ = {
@@ -173,6 +166,7 @@
 			children = (
 				B4083AC92853638900853E19 /* UITextField+.swift */,
 				B4083AF4285439B800853E19 /* calculation.swift */,
+				B4F8AD792856CC3700023556 /* EurekaTagString.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -287,6 +281,7 @@
 				B4083AC32853615A00853E19 /* RealmSwift */,
 				B4083AC62853619F00853E19 /* Charts */,
 				B4083AED285372CA00853E19 /* BetterSegmentedControl */,
+				B4F8AD772855BB0200023556 /* Eureka */,
 			);
 			productName = "PFC-Checker";
 			productReference = B4083A862853607800853E19 /* PFC-Checker.app */;
@@ -296,9 +291,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B4083AB32853607B00853E19 /* Build configuration list for PBXNativeTarget "PFC-CheckerTests" */;
 			buildPhases = (
+				A2F933D9D919122513DC4B14 /* [CP] Check Pods Manifest.lock */,
 				B4083A982853607B00853E19 /* Sources */,
 				B4083A992853607B00853E19 /* Frameworks */,
 				B4083A9A2853607B00853E19 /* Resources */,
+				4D5071280378FE94A1678D77 /* [CP] Embed Pods Frameworks */,
+				F318DB8790A56B45FC963656 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -314,9 +312,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B4083AB62853607B00853E19 /* Build configuration list for PBXNativeTarget "PFC-CheckerUITests" */;
 			buildPhases = (
+				B2C55A2102719F1A04AB3E68 /* [CP] Check Pods Manifest.lock */,
 				B4083AA22853607B00853E19 /* Sources */,
 				B4083AA32853607B00853E19 /* Frameworks */,
 				B4083AA42853607B00853E19 /* Resources */,
+				727FB549ADD80B4DE3586A11 /* [CP] Embed Pods Frameworks */,
+				E7F39DAA181A46D51EA98278 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -365,8 +366,9 @@
 				B4083AC02853615A00853E19 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				B4083AC52853619F00853E19 /* XCRemoteSwiftPackageReference "Charts" */,
 				B4083AEC285372C900853E19 /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */,
+				B4F8AD762855BB0200023556 /* XCRemoteSwiftPackageReference "Eureka" */,
 			);
-			productRefGroup = B4083A872853607800853E19 /* Products */;
+			productRefGroup = B4083A7D2853607800853E19;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -409,6 +411,127 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4D5071280378FE94A1678D77 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PFC-CheckerTests/Pods-PFC-CheckerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		727FB549ADD80B4DE3586A11 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PFC-Checker-PFC-CheckerUITests/Pods-PFC-Checker-PFC-CheckerUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PFC-Checker-PFC-CheckerUITests/Pods-PFC-Checker-PFC-CheckerUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PFC-CheckerUITests/Pods-PFC-CheckerUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A2F933D9D919122513DC4B14 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PFC-CheckerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B2C55A2102719F1A04AB3E68 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PFC-Checker-PFC-CheckerUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E7F39DAA181A46D51EA98278 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PFC-CheckerUITests/Pods-PFC-CheckerUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F318DB8790A56B45FC963656 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PFC-CheckerTests/Pods-PFC-CheckerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B4083A822853607800853E19 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -419,6 +542,7 @@
 				B4083A8A2853607800853E19 /* AppDelegate.swift in Sources */,
 				B4083AE0285363B200853E19 /* EditViewController.swift in Sources */,
 				B4083A8C2853607800853E19 /* SceneDelegate.swift in Sources */,
+				B4F8AD7A2856CC3700023556 /* EurekaTagString.swift in Sources */,
 				B4083ACD285363A300853E19 /* PFCcomponentModel.swift in Sources */,
 				B4083AEA285363C400853E19 /* PFCViewModel.swift in Sources */,
 				B4083ADF285363B200853E19 /* HomePFCViewController.swift in Sources */,
@@ -612,6 +736,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = HomePFC;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -640,6 +765,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = HomePFC;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -803,6 +929,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		B4F8AD762855BB0200023556 /* XCRemoteSwiftPackageReference "Eureka" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/xmartlabs/Eureka";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -840,6 +974,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B4083AEC285372C900853E19 /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */;
 			productName = BetterSegmentedControl;
+		};
+		B4F8AD772855BB0200023556 /* Eureka */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4F8AD762855BB0200023556 /* XCRemoteSwiftPackageReference "Eureka" */;
+			productName = Eureka;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
