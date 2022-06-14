@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B400385328588719007C64CB /* DZNEmptyDataSet in Frameworks */ = {isa = PBXBuildFile; productRef = B400385228588719007C64CB /* DZNEmptyDataSet */; };
 		B4083A8A2853607800853E19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083A892853607800853E19 /* AppDelegate.swift */; };
 		B4083A8C2853607800853E19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083A8B2853607800853E19 /* SceneDelegate.swift */; };
 		B4083A932853607A00853E19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4083A922853607A00853E19 /* Assets.xcassets */; };
@@ -96,6 +97,7 @@
 			files = (
 				B4083ABF285360DF00853E19 /* RxSwift in Frameworks */,
 				B4083AC72853619F00853E19 /* Charts in Frameworks */,
+				B400385328588719007C64CB /* DZNEmptyDataSet in Frameworks */,
 				B4083ABD285360DF00853E19 /* RxRelay in Frameworks */,
 				B4083AC22853615A00853E19 /* Realm in Frameworks */,
 				B4083AEE285372CA00853E19 /* BetterSegmentedControl in Frameworks */,
@@ -285,6 +287,7 @@
 				B4083AC62853619F00853E19 /* Charts */,
 				B4083AED285372CA00853E19 /* BetterSegmentedControl */,
 				B4F8AD772855BB0200023556 /* Eureka */,
+				B400385228588719007C64CB /* DZNEmptyDataSet */,
 			);
 			productName = "PFC-Checker";
 			productReference = B4F8AD7B2856CEA100023556 /* PFC-Checker.app */;
@@ -370,6 +373,7 @@
 				B4083AC52853619F00853E19 /* XCRemoteSwiftPackageReference "Charts" */,
 				B4083AEC285372C900853E19 /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */,
 				B4F8AD762855BB0200023556 /* XCRemoteSwiftPackageReference "Eureka" */,
+				B400385128588719007C64CB /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */,
 			);
 			productRefGroup = B4083A7D2853607800853E19;
 			projectDirPath = "";
@@ -900,6 +904,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B400385128588719007C64CB /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dzenbot/DZNEmptyDataSet";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		B4083AB9285360DF00853E19 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -943,6 +955,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B400385228588719007C64CB /* DZNEmptyDataSet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B400385128588719007C64CB /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */;
+			productName = DZNEmptyDataSet;
+		};
 		B4083ABA285360DF00853E19 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B4083AB9285360DF00853E19 /* XCRemoteSwiftPackageReference "RxSwift" */;

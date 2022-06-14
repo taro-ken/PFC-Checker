@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RealmSwift
+import DZNEmptyDataSet
 
 
 final class PFCListViewController: UIViewController {
@@ -28,6 +29,8 @@ final class PFCListViewController: UIViewController {
             pfcTableView.register(UINib(nibName: pfcListCell, bundle: nil), forCellReuseIdentifier: pfcListCell)
             pfcTableView.dataSource = self
             pfcTableView.delegate = self
+            pfcTableView.emptyDataSetSource = self
+            pfcTableView.emptyDataSetDelegate = self
         }
     }
     
@@ -102,5 +105,19 @@ extension PFCListViewController: CatchFlagProtcol {
     func CatchFlag(row: Int, flag: Bool) {
         input.catchFlag(row: row, flag: flag)
     }
+}
+
+extension PFCListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: "データがありません")
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "list")
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+      return NSAttributedString(string: "ホーム画面から追加しましょう")
+     }
 }
 

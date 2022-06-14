@@ -23,7 +23,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="qmN-h7-J10" secondAttribute="trailing" id="DZ8-CG-7ln"/>
                             <constraint firstItem="qmN-h7-J10" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="IRP-9i-GOv"/>
@@ -32,7 +32,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hA2-8c-RhR">
-                        <barButtonItem key="rightBarButtonItem" image="trash" catalog="system" style="done" id="8Yd-Iy-lgh">
+                        <barButtonItem key="rightBarButtonItem" image="trash.fill" catalog="system" style="done" id="8Yd-Iy-lgh">
                             <color key="tintColor" systemColor="systemRedColor"/>
                             <connections>
                                 <action selector="doneEditTable:" destination="Y6W-OH-hqX" id="Xyt-x9-gRe"/>
@@ -50,7 +50,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="trash" catalog="system" width="121" height="128"/>
+        <image name="trash.fill" catalog="system" width="121" height="128"/>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
