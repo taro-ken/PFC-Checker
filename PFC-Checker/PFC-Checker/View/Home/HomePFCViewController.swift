@@ -170,7 +170,7 @@ extension HomePFCViewController {
             segments: LabelSegment.segments(withTitles: ["PFC(g)", "PFC(%)"],
                                             normalTextColor: .black,
                                             selectedTextColor: .white),
-            options:[.backgroundColor(.lightGray),
+            options:[.backgroundColor(.tertiarySystemGroupedBackground),
                      .indicatorViewBackgroundColor(UIColor.darkGray),
                      .cornerRadius(15.0),
                      .animationSpringDamping(1.0)])
