@@ -26,7 +26,6 @@ final class PFCListViewController: UIViewController {
     @IBOutlet weak var pfcTableView: UITableView! {
         didSet {
             pfcTableView.register(UINib(nibName: pfcListCell, bundle: nil), forCellReuseIdentifier: pfcListCell)
-            pfcTableView.layer.cornerRadius = 20
             pfcTableView.dataSource = self
             pfcTableView.delegate = self
         }
@@ -65,8 +64,6 @@ extension PFCListViewController: UITableViewDelegate,UITableViewDataSource {
         }
         cell.configure(model: output.pfcModels[indexPath.row])
         cell.selectionStyle = .none
-        cell.contentView.layer.cornerRadius = 10
-        cell.contentView.layer.masksToBounds = true
         cell.flagSwich.tag = indexPath.row
         cell.catchFlagDelegate = self
         return cell
@@ -79,7 +76,7 @@ extension PFCListViewController: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 120
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

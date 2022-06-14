@@ -24,13 +24,16 @@ final class PFCListCell: UITableViewCell {
     var catchFlagDelegate: CatchFlagProtcol?
     
 
+    @IBOutlet weak var mainBackground: UIView!
+    @IBOutlet weak var shadowLayer: UIView!
     
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         flagSwich.addTarget(self, action: #selector(swichFlag(_:)), for: .touchUpInside)
-      //  countStepper.value = Double(countvalue)
+        PFCname.font = UIFont(name: "pingfanghk-Medium", size: 20)
+        unitValue.font = UIFont(name: "pingfanghk-Medium", size: 15)
     }
     
     @objc func swichFlag(_ sender: UISwitch) {
@@ -46,12 +49,13 @@ final class PFCListCell: UITableViewCell {
     }
     
     func configure(model: PFCcomponentModel) {
-       // countvalue = model.unitValue
+        self.mainBackground.layer.cornerRadius = 8
+        self.mainBackground.layer.masksToBounds = true
         PFCname.text = model.name
-        proteinValue.text = "P\(model.protein)g"
-        fatValue.text = "F\(model.fat)g"
-        carbValue.text = "C\(model.carb)g"
-        calorieValue.text = "\(model.calorie)Kcal"
+        proteinValue.text = "P/ \(model.protein)g"
+        fatValue.text = "F/ \(model.fat)g"
+        carbValue.text = "C/ \(model.carb)g"
+        calorieValue.text = "\(model.calorie)kcal"
         unitValue.text = "\(model.unitValue)\(model.unit)"
         flagSwich.isOn = model.flag
     }
@@ -63,4 +67,23 @@ protocol CatchCountProtcol {
 
 protocol CatchFlagProtcol {
     func CatchFlag(row: Int,flag: Bool)
+}
+
+
+class ShadowView: UIView {
+    override var bounds: CGRect {
+        didSet {
+            setupShadow()
+        }
+    }
+
+    private func setupShadow() {
+        self.layer.cornerRadius = 8
+        self.layer.shadowOffset = CGSize(width: 0, height: 5)
+        self.layer.shadowRadius = 3
+        self.layer.shadowOpacity = 0.3
+        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 8, height: 8)).cgPath
+        self.layer.shouldRasterize = true
+        self.layer.rasterizationScale = UIScreen.main.scale
+    }
 }

@@ -13,7 +13,6 @@ import BetterSegmentedControl
 final class HomePFCViewController: UIViewController {
     
     @IBOutlet weak var mainTopVew: UIView!
-    @IBOutlet weak var totalCalView: UIView!
     @IBOutlet weak var diffCalLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var chartView: PieChartView!
@@ -38,6 +37,7 @@ final class HomePFCViewController: UIViewController {
     private lazy var input: PFCViewModelInput = viewModel
     private lazy var output: PFCViewModelOutput = viewModel
     private let disposeBug = DisposeBag()
+    let generator = UIImpactFeedbackGenerator(style: .heavy)
     
     var pChartValue:Int = Int()
     var fChartValue:Int = Int()
@@ -52,6 +52,7 @@ final class HomePFCViewController: UIViewController {
         chartView.isHidden = true
         outputBind()
         BetterSegmentedControlSetUp()
+        generator.prepare()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,6 +71,7 @@ final class HomePFCViewController: UIViewController {
     }
     
     @objc func tapAddbutton() {
+        generator.impactOccurred()
         let vc = UIStoryboard.init(name: "AddInfo", bundle: nil).instantiateInitialViewController() as! AddInfoViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -111,22 +113,16 @@ extension HomePFCViewController {
         
         mainTopVew.layer.cornerRadius = 20
         mainTopVew.layer.shadowOpacity = 0.5
-        mainTopVew.layer.shadowRadius = 3
-        mainTopVew.layer.shadowColor = UIColor.darkGray.cgColor
-        mainTopVew.layer.shadowOffset = CGSize(width: 5, height: 5)
+        mainTopVew.layer.shadowRadius = 2
+        mainTopVew.layer.shadowColor = UIColor.gray.cgColor
+        mainTopVew.layer.shadowOffset = CGSize(width: 2, height: 2)
         diffCalLabel.layer.cornerRadius = 20
         
         addButton.layer.cornerRadius = 25
         addButton.layer.shadowOpacity = 0.5
-        addButton.layer.shadowRadius = 3
+        addButton.layer.shadowRadius = 2
         addButton.layer.shadowColor = UIColor.black.cgColor
         addButton.layer.shadowOffset = CGSize(width: 3, height: 3)
-        
-        totalCalView.layer.cornerRadius = 20
-        totalCalView.layer.shadowOpacity = 0.5
-        totalCalView.layer.shadowRadius = 2
-        totalCalView.layer.shadowColor = UIColor.gray.cgColor
-        totalCalView.layer.shadowOffset = CGSize(width: 2, height: 2)
         
         proteinBackView.layer.cornerRadius = 20
         proteinBackView.layer.shadowOpacity = 0.5
@@ -174,7 +170,7 @@ extension HomePFCViewController {
             segments: LabelSegment.segments(withTitles: ["PFC(g)", "PFC(%)"],
                                             normalTextColor: .black,
                                             selectedTextColor: .white),
-            options:[.backgroundColor(.white),
+            options:[.backgroundColor(.lightGray),
                      .indicatorViewBackgroundColor(UIColor.darkGray),
                      .cornerRadius(15.0),
                      .animationSpringDamping(1.0)])
