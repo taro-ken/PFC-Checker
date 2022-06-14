@@ -59,15 +59,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B4083A862853607800853E19 /* PFC-Checker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "PFC-Checker.app"; path = "/Users/kimotokentaro/Desktop/myswift/PFC-Checker/PFC-Checker/build/Debug-iphoneos/PFC-Checker.app"; sourceTree = "<absolute>"; };
 		B4083A892853607800853E19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4083A8B2853607800853E19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B4083A922853607A00853E19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4083A952853607A00853E19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4083A972853607A00853E19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B4083A9C2853607B00853E19 /* PFC-CheckerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "PFC-CheckerTests.xctest"; path = "/Users/kimotokentaro/Desktop/myswift/PFC-Checker/PFC-Checker/build/Debug-iphoneos/PFC-CheckerTests.xctest"; sourceTree = "<absolute>"; };
 		B4083AA02853607B00853E19 /* PFC_CheckerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PFC_CheckerTests.swift; sourceTree = "<group>"; };
-		B4083AA62853607B00853E19 /* PFC-CheckerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "PFC-CheckerUITests.xctest"; path = "/Users/kimotokentaro/Desktop/myswift/PFC-Checker/PFC-Checker/build/Debug-iphoneos/PFC-CheckerUITests.xctest"; sourceTree = "<absolute>"; };
 		B4083AAA2853607B00853E19 /* PFC_CheckerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PFC_CheckerUITests.swift; sourceTree = "<group>"; };
 		B4083AAC2853607B00853E19 /* PFC_CheckerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PFC_CheckerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B4083AC92853638900853E19 /* UITextField+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
@@ -87,6 +84,9 @@
 		B4083AF22853901D00853E19 /* BMR.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BMR.storyboard; sourceTree = "<group>"; };
 		B4083AF4285439B800853E19 /* calculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calculation.swift; sourceTree = "<group>"; };
 		B4F8AD792856CC3700023556 /* EurekaTagString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EurekaTagString.swift; sourceTree = "<group>"; };
+		B4F8AD7B2856CEA100023556 /* PFC-Checker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PFC-Checker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4F8AD7C2856CEA100023556 /* PFC-CheckerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PFC-CheckerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4F8AD7D2856CEA100023556 /* PFC-CheckerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PFC-CheckerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +128,9 @@
 				B4083A882853607800853E19 /* PFC-Checker */,
 				B4083A9F2853607B00853E19 /* PFC-CheckerTests */,
 				B4083AA92853607B00853E19 /* PFC-CheckerUITests */,
+				B4F8AD7B2856CEA100023556 /* PFC-Checker.app */,
+				B4F8AD7C2856CEA100023556 /* PFC-CheckerTests.xctest */,
+				B4F8AD7D2856CEA100023556 /* PFC-CheckerUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -222,8 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				B4083ADA285363B200853E19 /* PFCListCell.swift */,
-				B4083ADB285363B200853E19 /* PFCList.storyboard */,
 				B4083ADC285363B200853E19 /* PFCListCell.xib */,
+				B4083ADB285363B200853E19 /* PFCList.storyboard */,
 				B4083ADD285363B200853E19 /* PFCListViewController.swift */,
 			);
 			path = List;
@@ -284,7 +287,7 @@
 				B4F8AD772855BB0200023556 /* Eureka */,
 			);
 			productName = "PFC-Checker";
-			productReference = B4083A862853607800853E19 /* PFC-Checker.app */;
+			productReference = B4F8AD7B2856CEA100023556 /* PFC-Checker.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B4083A9B2853607B00853E19 /* PFC-CheckerTests */ = {
@@ -305,7 +308,7 @@
 			);
 			name = "PFC-CheckerTests";
 			productName = "PFC-CheckerTests";
-			productReference = B4083A9C2853607B00853E19 /* PFC-CheckerTests.xctest */;
+			productReference = B4F8AD7C2856CEA100023556 /* PFC-CheckerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		B4083AA52853607B00853E19 /* PFC-CheckerUITests */ = {
@@ -326,7 +329,7 @@
 			);
 			name = "PFC-CheckerUITests";
 			productName = "PFC-CheckerUITests";
-			productReference = B4083AA62853607B00853E19 /* PFC-CheckerUITests.xctest */;
+			productReference = B4F8AD7D2856CEA100023556 /* PFC-CheckerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */

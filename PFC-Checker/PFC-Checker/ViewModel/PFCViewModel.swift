@@ -149,27 +149,17 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
         }
         
         Observable.combineLatest(pObservable,fObservable,cObservable).map{ [self] p,f,c in
-            let mcuMix = (p * 4)+(f * 9)+(c * 4)
-            print(p)
-            print(f)
-            print(c)
-            print(mcuMix)
-            calValue.accept(mcuMix)
+            let mix = (p * 4)+(f * 9)+(c * 4)
+            calValue.accept(mix)
         }.subscribe().disposed(by: disposeBug)
     }
 
-    
-    
-    
     /*outputについての記述*/
     private let _changeModelsObservable = PublishRelay<Void>()
     lazy var changeModelsObservable = _changeModelsObservable.asObservable()
     private(set) var pfcModels:[PFCcomponentModel] = []
     private(set) var models = BehaviorRelay<[PFCcomponentModel]>(value: [])
-    
-    
-    
-    
+   
     func update() {
         let pfcData = realm.objects(PFCcomponentModel.self)
         let pfcDataArray = Array(pfcData)
@@ -178,10 +168,7 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
         let filter = pfcData.filter("flag == %d",true)
         models.accept(Array(filter))
     }
-
-
-    
-    
+   
     init() {
         let pfcData = realm.objects(PFCcomponentModel.self)
         let pfcDataArray = Array(pfcData)
