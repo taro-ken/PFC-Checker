@@ -9,36 +9,45 @@ import Foundation
 import RxSwift
 import RxCocoa
 import RealmSwift
+import UIKit
 
-//ViewModelの入力に関するprotocol
 protocol PFCViewModelInput {
     func addInfo(name: String?,protein: Int,fat: Int,carb: Int,calorie: Int,unit: String?,unitValue: Int,flag: Bool)
     func catchCount(row: Int, value: Int, flag: Bool)
     func catchFlag(row: Int, flag: Bool)
     func editInfo(name: String?,protein: Int,fat: Int,carb: Int,calorie: Int,unit: String?,unitValue: Int,flag: Bool,row: Int)
-    var pValue:BehaviorRelay<Double?> { get }
-    var fValue:BehaviorRelay<Double?> { get }
-    var cValue:BehaviorRelay<Double?> { get }
-    var calValue:BehaviorRelay<Double?> { get }
+    var pValue: BehaviorRelay<Double?> { get }
+    var fValue: BehaviorRelay<Double?> { get }
+    var cValue: BehaviorRelay<Double?> { get }
+    var calValue: BehaviorRelay<Double?> { get }
     func calorieSet()
+    func savedBMR(sex: String?, age: Double?, tool: Double?, weight: Double? ,active: String?, emr: Double?, totalEMR: Double?)
+    func calculationBMR(sex: Observable<Int>, age: Observable<Double>, tool: Observable<Double>, weight: Observable<Double>, active: Observable<Int>)
 }
 
-//ViewModelの出力に関するprotocol
 protocol PFCViewModelOutput {
     var changeModelsObservable: Observable<Void> { get }
     var pfcModels: [PFCcomponentModel] { get }
     func update()
     var models:BehaviorRelay<[PFCcomponentModel]> { get }
+    var bmrValue: BehaviorRelay<String> { get }
+    var totalBMRValue: BehaviorRelay<String> { get }
 }
 
-//ViewModelはInputとOutputのprotocolに準拠する
+
 final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
-   
+    
+    
     private let realm = try! Realm()
     private let disposeBug = DisposeBag()
     
+    var pValue = BehaviorRelay<Double?>(value: Double())
+    var fValue = BehaviorRelay<Double?>(value: Double())
+    var cValue = BehaviorRelay<Double?>(value: Double())
+    var calValue = BehaviorRelay<Double?>(value: Double())
     
-    /*inputについての記述*/
+    
+    //MARK: -/*inputについての記述*/
     private let addInfo = PublishRelay<PFCcomponentModel>()
     func addInfo(name: String?,protein: Int,fat: Int,carb: Int,calorie: Int,unit: String?,unitValue: Int,flag: Bool) {
         guard let unit = unit else {
@@ -88,7 +97,7 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
         let baseF = pfcData[row].fat / pfcData[row].unitValue
         let baseC = pfcData[row].carb / pfcData[row].unitValue
         let baseCalorie = pfcData[row].calorie / pfcData[row].unitValue
-         
+        
         try! realm.write {
             pfcData[row].unitValue = (pfcData[row].unitValue / pfcData[row].unitValue) * value
             pfcData[row].protein = baseP * value
@@ -108,12 +117,6 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
         
     }
     
-    var pValue = BehaviorRelay<Double?>(value: Double())
-    var fValue = BehaviorRelay<Double?>(value: Double())
-    var cValue = BehaviorRelay<Double?>(value: Double())
-    var calValue = BehaviorRelay<Double?>(value: Double())
-    
-   
     func calorieSet() {
         let pObservable =  Observable<Double>.create { [self] observer -> Disposable in
             pValue.bind { response in
@@ -153,13 +156,58 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
             calValue.accept(mix)
         }.subscribe().disposed(by: disposeBug)
     }
-
-    /*outputについての記述*/
+    
+    func calculationBMR(sex: Observable<Int>, age: Observable<Double>, tool: Observable<Double>, weight: Observable<Double>,  active: Observable<Int>) {
+        sex.bind { [self] response in
+            if response == 0 {
+                Observable
+                    .combineLatest(age, tool, weight) { (_age: Double, _tool: Double, _weight: Double) in
+                        calculation.menBMRCalculation(age: _age, tool: _tool, weight: _weight)
+                    }
+                    .map { String(format: "%.0f",$0) }
+                    .bind(to: bmrValue)
+                    .disposed(by: disposeBug)
+            } else {
+                Observable
+                    .combineLatest(age, tool, weight) { (_age: Double, _tool: Double, _weight: Double) in
+                        calculation.womanBMRCalculation(age: _age, tool: _tool, weight: _weight)
+                    }
+                    .map { String(format: "%.0f",$0) }
+                    .bind(to: bmrValue)
+                    .disposed(by: disposeBug)
+            }
+        }
+        
+        active.bind { [self] response in
+            switch response {
+            case 0:
+                bmrValue.map{ String(format: "%.0f",calculation.lowCalculation(value: $0))}.bind(to: totalBMRValue).disposed(by: disposeBug)
+            case 1:
+                bmrValue.map{ String(format: "%.0f",calculation.middleCalculation(value: $0)) }.bind(to: totalBMRValue).disposed(by: disposeBug)
+            case 2:
+                bmrValue.map{ String(format: "%.0f",calculation.highCalculation(value: $0)) }.bind(to: totalBMRValue).disposed(by: disposeBug)
+            case 3:
+                bmrValue.map{ String(format: "%.0f",calculation.superHighCalculation(value: $0)) }.bind(to: totalBMRValue).disposed(by: disposeBug)
+            default:
+                break
+            }
+        }
+    }
+    
+    func savedBMR(sex: String?, age: Double?, tool: Double?, weight: Double? ,active: String?, emr: Double?, totalEMR: Double?) {
+        
+    }
+    
+    
+    //MARK: - outputについての記述
     private let _changeModelsObservable = PublishRelay<Void>()
     lazy var changeModelsObservable = _changeModelsObservable.asObservable()
     private(set) var pfcModels:[PFCcomponentModel] = []
     private(set) var models = BehaviorRelay<[PFCcomponentModel]>(value: [])
-   
+    
+    var bmrValue = BehaviorRelay<String>(value: String())
+    var totalBMRValue = BehaviorRelay<String>(value: String())
+    
     func update() {
         let pfcData = realm.objects(PFCcomponentModel.self)
         let pfcDataArray = Array(pfcData)
@@ -168,7 +216,7 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
         let filter = pfcData.filter("flag == %d",true)
         models.accept(Array(filter))
     }
-   
+    
     init() {
         let pfcData = realm.objects(PFCcomponentModel.self)
         let pfcDataArray = Array(pfcData)

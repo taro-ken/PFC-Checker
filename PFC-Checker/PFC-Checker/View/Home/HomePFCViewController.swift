@@ -17,20 +17,16 @@ final class HomePFCViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var chartView: PieChartView!
     @IBOutlet weak var pfcStac: UIStackView!
-    @IBOutlet weak var proteinBackView: UIView!
-    @IBOutlet weak var fatBackView: UIView!
-    @IBOutlet weak var carbBackView: UIView!
-    @IBOutlet weak var proteinLabelView: UIView!
-    @IBOutlet weak var fatLabelView: UIView!
-    @IBOutlet weak var carbLabelView: UIView!
+    
     @IBOutlet weak var totalCalLabel: UILabel!
     @IBOutlet weak var proteinGramLabel: UILabel!
-    @IBOutlet weak var proteinCalLabel: UILabel!
+  
     @IBOutlet weak var fatGramLabel: UILabel!
-    @IBOutlet weak var fatCalLabel: UILabel!
-    @IBOutlet weak var carbGramLabel: UILabel!
-    @IBOutlet weak var carbCalLabel: UILabel!
     
+    @IBOutlet weak var carbGramLabel: UILabel!
+   
+    
+    @IBOutlet weak var totalBMRLabel: UILabel!
     
     
     private let viewModel = PFCViewModel()
@@ -57,6 +53,7 @@ final class HomePFCViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         output.update()
+        userDefaultsSetUp()
     }
     
     @objc func changedSegment(_ sender: BetterSegmentedControl) {
@@ -87,22 +84,19 @@ final class HomePFCViewController: UIViewController {
     }
     
     private func outputBind() {
-//        output.models.bind(onNext: { [self] response in
-//            totalCalLabel.text = "\(response.map {$0.calorie}.reduce(0, +).description)kcal"
-//            proteinGramLabel.text = response.map {$0.protein}.reduce(0, +).description
-//            fatGramLabel.text = response.map {$0.fat}.reduce(0, +).description
-//            carbGramLabel.text = response.map {$0.carb}.reduce(0, +).description
-//            let totalCal = response.map {$0.calorie}.reduce(0, +)
-//            let totalP = response.map {$0.protein}.reduce(0, +) * 4
-//            let totalF = response.map {$0.fat}.reduce(0, +) * 9
-//            let totalC = response.map {$0.carb}.reduce(0, +) * 4
-//            pChartValue = calculation.calculation(totalPFC: totalP, totalCal: totalCal)
-//            fChartValue = calculation.calculation(totalPFC: totalF, totalCal: totalCal)
-//            cChartValue = calculation.calculation(totalPFC: totalC, totalCal: totalCal)
-//            proteinCalLabel.text = "\(totalP)kcal"
-//            fatCalLabel.text = "\(totalF)kcal"
-//            carbCalLabel.text = "\(totalC)kcal"
-//        }).disposed(by: disposeBug)
+        output.models.bind(onNext: { [self] response in
+            totalCalLabel.text = "\(response.map {$0.calorie}.reduce(0, +).description)kcal"
+            proteinGramLabel.text = "\(response.map {$0.protein}.reduce(0, +).description)g"
+            fatGramLabel.text = "\(response.map {$0.fat}.reduce(0, +).description)g"
+            carbGramLabel.text = "\(response.map {$0.carb}.reduce(0, +).description)g"
+            let totalCal = response.map {$0.calorie}.reduce(0, +)
+            let totalP = response.map {$0.protein}.reduce(0, +) * 4
+            let totalF = response.map {$0.fat}.reduce(0, +) * 9
+            let totalC = response.map {$0.carb}.reduce(0, +) * 4
+            pChartValue = calculation.calculation(totalPFC: totalP, totalCal: totalCal)
+            fChartValue = calculation.calculation(totalPFC: totalF, totalCal: totalCal)
+            cChartValue = calculation.calculation(totalPFC: totalC, totalCal: totalCal)
+        }).disposed(by: disposeBug)
     }
 }
 
@@ -124,42 +118,6 @@ extension HomePFCViewController {
         addButton.layer.shadowColor = UIColor.black.cgColor
         addButton.layer.shadowOffset = CGSize(width: 3, height: 3)
         
-        proteinBackView.layer.cornerRadius = 20
-        proteinBackView.layer.shadowOpacity = 0.5
-        proteinBackView.layer.shadowRadius = 2
-        proteinBackView.layer.shadowColor = UIColor.gray.cgColor
-        proteinBackView.layer.shadowOffset = CGSize(width: 2, height: 2)
-        
-        fatBackView.layer.cornerRadius = 20
-        fatBackView.layer.shadowOpacity = 0.5
-        fatBackView.layer.shadowRadius = 2
-        fatBackView.layer.shadowColor = UIColor.gray.cgColor
-        fatBackView.layer.shadowOffset = CGSize(width: 2, height: 2)
-        
-        carbBackView.layer.cornerRadius = 20
-        carbBackView.layer.shadowOpacity = 0.5
-        carbBackView.layer.shadowRadius = 2
-        carbBackView.layer.shadowColor = UIColor.gray.cgColor
-        carbBackView.layer.shadowOffset = CGSize(width: 2, height: 2)
-        
-        proteinLabelView.layer.cornerRadius = 20
-        proteinLabelView.layer.shadowOpacity = 0.5
-        proteinLabelView.layer.shadowRadius = 2
-        proteinLabelView.layer.shadowColor = UIColor.gray.cgColor
-        proteinLabelView.layer.shadowOffset = CGSize(width: 2, height: 2)
-        
-        fatLabelView.layer.cornerRadius = 20
-        fatLabelView.layer.shadowOpacity = 0.5
-        fatLabelView.layer.shadowRadius = 2
-        fatLabelView.layer.shadowColor = UIColor.gray.cgColor
-        fatLabelView.layer.shadowOffset = CGSize(width: 2, height: 2)
-        
-        carbLabelView.layer.cornerRadius = 20
-        carbLabelView.layer.shadowOpacity = 0.5
-        carbLabelView.layer.shadowRadius = 2
-        carbLabelView.layer.shadowColor = UIColor.gray.cgColor
-        carbLabelView.layer.shadowOffset = CGSize(width: 2, height: 2)
-        
         addButton.addTarget(self, action: #selector(tapAddbutton), for: .touchUpInside)
     }
     
@@ -170,7 +128,7 @@ extension HomePFCViewController {
             segments: LabelSegment.segments(withTitles: ["PFC(g)", "PFC(%)"],
                                             normalTextColor: .black,
                                             selectedTextColor: .white),
-            options:[.backgroundColor(.tertiarySystemGroupedBackground),
+            options:[.backgroundColor(.systemBackground),
                      .indicatorViewBackgroundColor(UIColor.darkGray),
                      .cornerRadius(15.0),
                      .animationSpringDamping(1.0)])
@@ -188,7 +146,8 @@ extension HomePFCViewController {
             PieChartDataEntry(value: Double(cChartValue) / 100, label: "炭水化物"),
         ]
         let dataSet = PieChartDataSet(entries: dataEntries, label: "")
-        dataSet.colors = ChartColorTemplates.vordiplom()
+      //  dataSet.colors = ChartColorTemplates.vordiplom()
+        dataSet.colors = [UIColor(named: "PColor")!,UIColor(named: "FColor")!,UIColor(named: "CColor")!]
         dataSet.valueTextColor = UIColor.black
         dataSet.entryLabelColor = UIColor.black
         self.chartView.data = PieChartData(dataSet: dataSet)
@@ -196,5 +155,16 @@ extension HomePFCViewController {
         formatter.numberStyle = .percent
         self.chartView.data?.setValueFormatter(DefaultValueFormatter(formatter: formatter))
         view.addSubview(self.chartView)
+    }
+    
+    func userDefaultsSetUp() {
+        let jsonDecoder = JSONDecoder()
+     //   jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+        guard let data = UserDefaults.standard.data(forKey: "a"),
+              let dataModel = try? jsonDecoder.decode(BMRModel.self, from: data) else {
+                  return
+              }
+        print(dataModel)
+        totalBMRLabel.text = "1日の総消費カロリー\(dataModel.total)kcal" ?? "未設定"
     }
 }

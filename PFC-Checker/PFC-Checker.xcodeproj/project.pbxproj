@@ -38,6 +38,7 @@
 		B4083AF12853900D00853E19 /* BMRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AF02853900D00853E19 /* BMRViewController.swift */; };
 		B4083AF32853901D00853E19 /* BMR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4083AF22853901D00853E19 /* BMR.storyboard */; };
 		B4083AF5285439B800853E19 /* calculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AF4285439B800853E19 /* calculation.swift */; };
+		B493D8AE2858BA5F0021F52E /* BMRModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B493D8AD2858BA5F0021F52E /* BMRModel.swift */; };
 		B4F8AD782855BB0200023556 /* Eureka in Frameworks */ = {isa = PBXBuildFile; productRef = B4F8AD772855BB0200023556 /* Eureka */; };
 		B4F8AD7A2856CC3700023556 /* EurekaTagString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AD792856CC3700023556 /* EurekaTagString.swift */; };
 /* End PBXBuildFile section */
@@ -84,10 +85,11 @@
 		B4083AF02853900D00853E19 /* BMRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMRViewController.swift; sourceTree = "<group>"; };
 		B4083AF22853901D00853E19 /* BMR.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BMR.storyboard; sourceTree = "<group>"; };
 		B4083AF4285439B800853E19 /* calculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calculation.swift; sourceTree = "<group>"; };
+		B493D8AB2858AB2B0021F52E /* PFC-CheckerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PFC-CheckerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B493D8AC2858AB2B0021F52E /* PFC-CheckerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PFC-CheckerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B493D8AD2858BA5F0021F52E /* BMRModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMRModel.swift; sourceTree = "<group>"; };
 		B4F8AD792856CC3700023556 /* EurekaTagString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EurekaTagString.swift; sourceTree = "<group>"; };
 		B4F8AD7B2856CEA100023556 /* PFC-Checker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PFC-Checker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B4F8AD7C2856CEA100023556 /* PFC-CheckerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PFC-CheckerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B4F8AD7D2856CEA100023556 /* PFC-CheckerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PFC-CheckerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,8 +133,8 @@
 				B4083A9F2853607B00853E19 /* PFC-CheckerTests */,
 				B4083AA92853607B00853E19 /* PFC-CheckerUITests */,
 				B4F8AD7B2856CEA100023556 /* PFC-Checker.app */,
-				B4F8AD7C2856CEA100023556 /* PFC-CheckerTests.xctest */,
-				B4F8AD7D2856CEA100023556 /* PFC-CheckerUITests.xctest */,
+				B493D8AB2858AB2B0021F52E /* PFC-CheckerTests.xctest */,
+				B493D8AC2858AB2B0021F52E /* PFC-CheckerUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				B4083ACC285363A300853E19 /* PFCcomponentModel.swift */,
+				B493D8AD2858BA5F0021F52E /* BMRModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -311,7 +314,7 @@
 			);
 			name = "PFC-CheckerTests";
 			productName = "PFC-CheckerTests";
-			productReference = B4F8AD7C2856CEA100023556 /* PFC-CheckerTests.xctest */;
+			productReference = B493D8AB2858AB2B0021F52E /* PFC-CheckerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		B4083AA52853607B00853E19 /* PFC-CheckerUITests */ = {
@@ -332,7 +335,7 @@
 			);
 			name = "PFC-CheckerUITests";
 			productName = "PFC-CheckerUITests";
-			productReference = B4F8AD7D2856CEA100023556 /* PFC-CheckerUITests.xctest */;
+			productReference = B493D8AC2858AB2B0021F52E /* PFC-CheckerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -553,6 +556,7 @@
 				B4083ACD285363A300853E19 /* PFCcomponentModel.swift in Sources */,
 				B4083AEA285363C400853E19 /* PFCViewModel.swift in Sources */,
 				B4083ADF285363B200853E19 /* HomePFCViewController.swift in Sources */,
+				B493D8AE2858BA5F0021F52E /* BMRModel.swift in Sources */,
 				B4083AE7285363B200853E19 /* PFCListViewController.swift in Sources */,
 				B4083AE3285363B200853E19 /* AddInfoViewController.swift in Sources */,
 				B4083AF12853900D00853E19 /* BMRViewController.swift in Sources */,
