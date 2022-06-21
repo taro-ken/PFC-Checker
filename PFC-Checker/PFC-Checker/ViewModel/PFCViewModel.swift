@@ -12,17 +12,16 @@ import RealmSwift
 import UIKit
 
 protocol PFCViewModelInput {
-    func addInfo(name: String?,protein: Int,fat: Int,carb: Int,calorie: Int,unit: String?,unitValue: Int,flag: Bool)
-    func catchCount(row: Int, value: Int, flag: Bool)
+    func addInfo(name: String?, protein: Int, fat: Int, carb: Int, calorie: Int, unit: String?, unitValue: Int, flag: Bool)
+    func catchCount(row: Int, value: Int)
     func catchFlag(row: Int, flag: Bool)
-    func editInfo(name: String?,protein: Int,fat: Int,carb: Int,calorie: Int,unit: String?,unitValue: Int,flag: Bool,row: Int)
+    func editInfo(name: String?, protein: Int, fat: Int, carb: Int, calorie: Int, unit: String?, flag: Bool, row: Int)
     var pValue: BehaviorRelay<Double?> { get }
     var fValue: BehaviorRelay<Double?> { get }
     var cValue: BehaviorRelay<Double?> { get }
     var calValue: BehaviorRelay<Double?> { get }
     func calorieSet()
-    func savedBMR(sex: String?, age: Double?, tool: Double?, weight: Double? ,active: String?, emr: Double?, totalEMR: Double?)
-    func calculationBMR(sex: Observable<Int>, age: Observable<Double>, tool: Observable<Double>, weight: Observable<Double>, active: Observable<Int>)
+    func bmrCalculation(sex: Int, age: String?, tool: String?, weight: String?, active: Int)
 }
 
 protocol PFCViewModelOutput {
@@ -36,7 +35,6 @@ protocol PFCViewModelOutput {
 
 
 final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
-    
     
     private let realm = try! Realm()
     private let disposeBug = DisposeBag()
@@ -55,10 +53,10 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
         }
         let pfc = PFCcomponentModel()
         pfc.name = name
-        pfc.protein = protein
-        pfc.fat = fat
-        pfc.carb = carb
-        pfc.calorie = calorie
+        pfc.protein = protein * unitValue
+        pfc.fat = fat * unitValue
+        pfc.carb = carb * unitValue
+        pfc.calorie = calorie * unitValue
         pfc.unit = unit
         pfc.unitValue = unitValue
         pfc.flag = flag
@@ -69,29 +67,28 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
         }
     }
     
-    func editInfo(name: String?,protein: Int,fat: Int,carb: Int,calorie: Int,unit: String?,unitValue: Int,flag: Bool, row: Int) {
-        let realmModel = realm.objects(PFCcomponentModel.self)
+    func editInfo(name: String?, protein: Int, fat: Int, carb: Int, calorie: Int, unit: String?, flag: Bool, row: Int) {
+        let pfcData = realm.objects(PFCcomponentModel.self)
+        let unitValue = pfcData[row].unitValue
         guard let unit = unit else {
             return
         }
-        
         try! realm .write {
-            realmModel[row].name = name
-            realmModel[row].protein = protein
-            realmModel[row].fat = fat
-            realmModel[row].carb = carb
-            realmModel[row].calorie = calorie
-            realmModel[row].unit = unit
-            realmModel[row].unitValue = unitValue
-            realmModel[row].flag = flag
+            pfcData[row].name = name
+            pfcData[row].protein = protein * unitValue
+            pfcData[row].fat = fat * unitValue
+            pfcData[row].carb = carb * unitValue
+            pfcData[row].calorie = calorie * unitValue
+            pfcData[row].unit = unit
+            pfcData[row].flag = flag
             update()
         }
     }
     
-    func catchCount(row: Int, value: Int, flag: Bool) {
+    func catchCount(row: Int, value: Int) {
         let pfc = PFCcomponentModel()
         
-        let pfcData = realm.objects(PFCcomponentModel.self).filter("flag == %d",flag)
+        let pfcData = realm.objects(PFCcomponentModel.self)
         
         let baseP = pfcData[row].protein / pfcData[row].unitValue
         let baseF = pfcData[row].fat / pfcData[row].unitValue
@@ -102,7 +99,9 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
             pfcData[row].unitValue = (pfcData[row].unitValue / pfcData[row].unitValue) * value
             pfcData[row].protein = baseP * value
             pfcData[row].fat = baseF * value
+            pfcData[row].carb = baseC * value
             pfcData[row].calorie = baseCalorie * value
+            update()
         }
     }
     
@@ -112,7 +111,6 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
         try! realm.write {
             pfcData[row].flag = flag
             update()
-            print(realm.objects(PFCcomponentModel.self))
         }
         
     }
@@ -157,45 +155,38 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
         }.subscribe().disposed(by: disposeBug)
     }
     
-    func calculationBMR(sex: Observable<Int>, age: Observable<Double>, tool: Observable<Double>, weight: Observable<Double>,  active: Observable<Int>) {
-        sex.bind { [self] response in
-            if response == 0 {
-                Observable
-                    .combineLatest(age, tool, weight) { (_age: Double, _tool: Double, _weight: Double) in
-                        calculation.menBMRCalculation(age: _age, tool: _tool, weight: _weight)
-                    }
-                    .map { String(format: "%.0f",$0) }
-                    .bind(to: bmrValue)
-                    .disposed(by: disposeBug)
-            } else {
-                Observable
-                    .combineLatest(age, tool, weight) { (_age: Double, _tool: Double, _weight: Double) in
-                        calculation.womanBMRCalculation(age: _age, tool: _tool, weight: _weight)
-                    }
-                    .map { String(format: "%.0f",$0) }
-                    .bind(to: bmrValue)
-                    .disposed(by: disposeBug)
-            }
-        }
-        
-        active.bind { [self] response in
-            switch response {
-            case 0:
-                bmrValue.map{ String(format: "%.0f",calculation.lowCalculation(value: $0))}.bind(to: totalBMRValue).disposed(by: disposeBug)
-            case 1:
-                bmrValue.map{ String(format: "%.0f",calculation.middleCalculation(value: $0)) }.bind(to: totalBMRValue).disposed(by: disposeBug)
-            case 2:
-                bmrValue.map{ String(format: "%.0f",calculation.highCalculation(value: $0)) }.bind(to: totalBMRValue).disposed(by: disposeBug)
-            case 3:
-                bmrValue.map{ String(format: "%.0f",calculation.superHighCalculation(value: $0)) }.bind(to: totalBMRValue).disposed(by: disposeBug)
-            default:
-                break
-            }
-        }
-    }
     
-    func savedBMR(sex: String?, age: Double?, tool: Double?, weight: Double? ,active: String?, emr: Double?, totalEMR: Double?) {
+    func bmrCalculation(sex: Int, age: String?, tool: String?, weight: String?, active: Int) {
+        guard let _age = age,
+              let _tool = tool,
+              let _weight = weight,
+              let  __age = Double(_age),
+              let __tool = Double(_tool),
+              let __weight  = Double(_weight) else {
+                  return
+              }
+        if sex == 0 {
+            let men = calculation.menBMRCalculation(age:  __age, tool: __tool, weight: __weight)
+            let st = String(format: "%.0f",men)
+            bmrValue.accept(st)
+        } else {
+            let woman = calculation.womanBMRCalculation(age: __age, tool: __tool, weight: __weight)
+            let st = String(format: "%.0f",woman)
+            bmrValue.accept(st)
+        }
         
+        switch active {
+        case 0:
+            bmrValue.map{ String(format: "%.0f",calculation.lowCalculation(value: $0))}.bind(to: totalBMRValue).disposed(by: disposeBug)
+        case 1:
+            bmrValue.map{ String(format: "%.0f",calculation.middleCalculation(value: $0)) }.bind(to: totalBMRValue).disposed(by: disposeBug)
+        case 2:
+            bmrValue.map{ String(format: "%.0f",calculation.highCalculation(value: $0)) }.bind(to: totalBMRValue).disposed(by: disposeBug)
+        case 3:
+            bmrValue.map{ String(format: "%.0f",calculation.superHighCalculation(value: $0)) }.bind(to: totalBMRValue).disposed(by: disposeBug)
+        default:
+            break
+        }
     }
     
     

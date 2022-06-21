@@ -9,16 +9,16 @@ import UIKit
 import RxSwift
 
 final class BMRViewController: UIViewController {
-
+    
     @IBOutlet weak var ageTextField: UITextField!
     @IBOutlet weak var toolTextField: UITextField!
     @IBOutlet weak var weightTextField: UITextField!
     @IBOutlet weak var bmrLabel: UILabel!
     @IBOutlet weak var totalBMRLabel: UILabel!
-    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var sexState: UISegmentedControl!
     @IBOutlet weak var activeState: UISegmentedControl!
     
+    @IBOutlet weak var calculationButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
     private let viewModel = PFCViewModel()
@@ -26,11 +26,12 @@ final class BMRViewController: UIViewController {
     private lazy var output: PFCViewModelOutput = viewModel
     private let disposeBug = DisposeBag()
     
-        override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
-            bind()
+        bind()
+        setup()
     }
-   
+    
     
     @IBAction func tappedAddButton(_ sender: Any) {
         if ageTextField.text!.count == 0
@@ -50,7 +51,6 @@ final class BMRViewController: UIViewController {
             let dataModel = BMRModel.init(sex: sexState.selectedSegmentIndex, age: ageTextField.text, tool: toolTextField.text, weight: weightTextField.text, active: activeState.selectedSegmentIndex, bmr: bmrLabel.text, total: total)
             
             let jsonEncoder = JSONEncoder()
-            jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
             guard let data = try? jsonEncoder.encode(dataModel) else {
                 return
             }
@@ -64,25 +64,32 @@ final class BMRViewController: UIViewController {
         }
     }
     
+    @IBAction func tappedCalculationButton(_ sender: Any) {
+        input.bmrCalculation(sex: sexState.selectedSegmentIndex, age: ageTextField.text, tool: toolTextField.text, weight: weightTextField.text, active: activeState.selectedSegmentIndex)
+    }
+    
+    
+    
     private func bind() {
-        let age = ageTextField.rx.text.map{ Double($0 ?? "") ?? 0 }
-        let tool = toolTextField.rx.text.map{ Double($0 ?? "") ?? 0 }
-        let weight = weightTextField.rx.text.map{ Double($0 ?? "") ?? 0 }
-        let sex = sexState.rx.selectedSegmentIndex.map { $0 }
-        let active = activeState.rx.selectedSegmentIndex.map { $0 }
-        input.calculationBMR(sex: sex, age: age, tool: tool, weight: weight, active: active)
         output.bmrValue.bind(to: bmrLabel.rx.text).disposed(by: disposeBug)
         output.totalBMRValue.bind(to: totalBMRLabel.rx.text).disposed(by: disposeBug)
-}
+    }
 }
 
 extension BMRViewController {
     private func setup() {
-        addButton.layer.cornerRadius = 10
-        addButton.layer.shadowOpacity = 0.5
-        addButton.layer.shadowRadius = 2
-        addButton.layer.shadowColor = UIColor.gray.cgColor
-        addButton.layer.shadowOffset = CGSize(width: 2, height: 2)
+        saveButton.layer.cornerRadius = 10
+        saveButton.layer.shadowOpacity = 1
+        saveButton.layer.shadowRadius = 2
+        saveButton.layer.shadowColor = UIColor.gray.cgColor
+        saveButton.layer.shadowOffset = CGSize(width: 2, height: 1)
+        
+        calculationButton.layer.cornerRadius = 10
+        calculationButton.layer.shadowOpacity = 1
+        calculationButton.layer.shadowRadius = 2
+        calculationButton.layer.shadowColor = UIColor.gray.cgColor
+        calculationButton.layer.shadowOffset = CGSize(width: 2, height: 1)
+        
         ageTextField.keyboardType = .numberPad
         toolTextField.keyboardType = .numberPad
         weightTextField.keyboardType = .numberPad

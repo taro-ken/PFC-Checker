@@ -43,12 +43,11 @@ final class EditViewController: FormViewController {
               let cRow = (self.form.rowBy(tag: EurekaTagString.settingC) as! DecimalRow).value,
               let calRow = (self.form.rowBy(tag: EurekaTagString.settingCal) as! DecimalRow).value,
               let unitRow = (self.form.rowBy(tag: EurekaTagString.settingUnit) as! TextRow).value,
-              let unitValueRow = (self.form.rowBy(tag: EurekaTagString.settingUnitValue) as! StepperRow).value,
               let swichRow = (self.form.rowBy(tag: EurekaTagString.settingSwich) as! SwitchRow).value
         else {
             return
         }
-        input.editInfo(name: nameRow, protein: Int(pRow), fat: Int(fRow), carb: Int(cRow), calorie: Int(calRow), unit: unitRow, unitValue: Int(unitValueRow), flag: swichRow, row: row)
+        input.editInfo(name: nameRow, protein: Int(pRow), fat: Int(fRow), carb: Int(cRow), calorie: Int(calRow), unit: unitRow, flag: swichRow, row: row)
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -57,6 +56,7 @@ final class EditViewController: FormViewController {
 extension EditViewController {
     private func formSetUp() {
         let data = realm.objects(PFCcomponentModel.self)
+        let unitValue = Double(data[row].unitValue)
         form +++ Section()
         <<< TextRow(EurekaTagString.settingName){
             $0.title = EurekaTagString.settingName
@@ -92,7 +92,7 @@ extension EditViewController {
             $0.title = EurekaTagString.settingP
             $0.placeholder = "量を入力"
             $0.tag = EurekaTagString.settingP
-            $0.value = Double(data[row].protein)
+            $0.value = Double(data[row].protein) / unitValue
             
             $0.useFormatterDuringInput = true
             let formatter = DecimalFormatter()
@@ -113,7 +113,7 @@ extension EditViewController {
             $0.title = EurekaTagString.settingF
             $0.placeholder = "量を入力"
             $0.tag = EurekaTagString.settingF
-            $0.value = Double(data[row].fat)
+            $0.value = Double(data[row].fat) / unitValue
             $0.useFormatterDuringInput = true
             let formatter = DecimalFormatter()
             formatter.locale = .current
@@ -132,7 +132,7 @@ extension EditViewController {
             $0.title = EurekaTagString.settingC
             $0.placeholder = "量を入力"
             $0.tag = EurekaTagString.settingC
-            $0.value = Double(data[row].carb)
+            $0.value = Double(data[row].carb) / unitValue
             $0.useFormatterDuringInput = true
             let formatter = DecimalFormatter()
             formatter.locale = .current
@@ -151,7 +151,7 @@ extension EditViewController {
             $0.title = EurekaTagString.settingCal
             $0.placeholder = "タップして取得"
             $0.tag = EurekaTagString.settingCal
-            $0.value = Double(data[row].calorie)
+            $0.value = Double(data[row].calorie) / unitValue
             $0.useFormatterDuringInput = true
             let formatter = DecimalFormatter()
             formatter.locale = .current
@@ -168,25 +168,6 @@ extension EditViewController {
             input.calorieSet()
         }
         
-        form +++ Section()
-        <<< StepperRow(EurekaTagString.settingUnitValue) {
-            $0.title = "数量"
-            $0.tag = EurekaTagString.settingUnitValue
-            $0.value = Double(data[row].unitValue)
-        }.cellSetup({ [self] (cell, rows) in
-            rows.value = Double(data[row].unitValue)
-            cell.valueLabel.text = "\(Int(rows.value!))"
-        }).cellUpdate({ (cell, row) in
-            if(row.value != nil)
-            {
-                cell.valueLabel.text = "\(Int(row.value!))"
-            }
-        }).onChange({ (row) in
-            if(row.value != nil)
-            {
-                row.cell.valueLabel.text = "\(Int(row.value!))"
-            }
-        })
         +++ Section()
         <<< SwitchRow(){
             $0.tag = EurekaTagString.settingSwich

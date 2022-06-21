@@ -69,6 +69,8 @@ extension PFCListViewController: UITableViewDelegate,UITableViewDataSource {
         cell.selectionStyle = .none
         cell.flagSwich.tag = indexPath.row
         cell.catchFlagDelegate = self
+        cell.countStepper.tag = indexPath.row
+        cell.catchCountDelegate = self
         return cell
     }
     
@@ -97,7 +99,8 @@ extension PFCListViewController: UITableViewDelegate,UITableViewDataSource {
 }
 
 extension PFCListViewController: CatchCountProtcol {
-    func catchCount(row: Int, value: Int, flag: Bool) {
+    func catchCount(row: Int, value: Int) {
+        input.catchCount(row: row, value: value)
     }
 }
 

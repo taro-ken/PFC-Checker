@@ -17,27 +17,23 @@ final class HomePFCViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var chartView: PieChartView!
     @IBOutlet weak var pfcStac: UIStackView!
-    
     @IBOutlet weak var totalCalLabel: UILabel!
     @IBOutlet weak var proteinGramLabel: UILabel!
-  
     @IBOutlet weak var fatGramLabel: UILabel!
-    
     @IBOutlet weak var carbGramLabel: UILabel!
-   
-    
     @IBOutlet weak var totalBMRLabel: UILabel!
-    
     
     private let viewModel = PFCViewModel()
     private lazy var input: PFCViewModelInput = viewModel
     private lazy var output: PFCViewModelOutput = viewModel
     private let disposeBug = DisposeBag()
-    let generator = UIImpactFeedbackGenerator(style: .heavy)
+   private let generator = UIImpactFeedbackGenerator(style: .heavy)
     
-    var pChartValue:Int = Int()
-    var fChartValue:Int = Int()
-    var cChartValue:Int = Int()
+    private  var pChartValue: Int = Int()
+    private  var fChartValue: Int = Int()
+    private var cChartValue: Int = Int()
+    
+    private var totalCalValue: Int = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,23 +75,30 @@ final class HomePFCViewController: UIViewController {
     }
     
     @IBAction func tappedBMR(_ sender: Any) {
-        let vc = UIStoryboard.init(name: "BMR", bundle: nil).instantiateInitialViewController() as! BMRViewController
-        self.navigationController?.pushViewController(vc, animated: true)
+        if UserDefaults.standard.object(forKey: "a") == nil {
+            let vc = UIStoryboard.init(name: "BMR", bundle: nil).instantiateInitialViewController() as! BMRViewController
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            print("データあるよ")
+            let vc = UIStoryboard.init(name: "EditBMR", bundle: nil).instantiateInitialViewController() as! EditBMRViewController
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     private func outputBind() {
         output.models.bind(onNext: { [self] response in
-            totalCalLabel.text = "\(response.map {$0.calorie}.reduce(0, +).description)kcal"
-            proteinGramLabel.text = "\(response.map {$0.protein}.reduce(0, +).description)g"
-            fatGramLabel.text = "\(response.map {$0.fat}.reduce(0, +).description)g"
-            carbGramLabel.text = "\(response.map {$0.carb}.reduce(0, +).description)g"
             let totalCal = response.map {$0.calorie}.reduce(0, +)
-            let totalP = response.map {$0.protein}.reduce(0, +) * 4
-            let totalF = response.map {$0.fat}.reduce(0, +) * 9
-            let totalC = response.map {$0.carb}.reduce(0, +) * 4
-            pChartValue = calculation.calculation(totalPFC: totalP, totalCal: totalCal)
-            fChartValue = calculation.calculation(totalPFC: totalF, totalCal: totalCal)
-            cChartValue = calculation.calculation(totalPFC: totalC, totalCal: totalCal)
+            let totalP = response.map {$0.protein}.reduce(0, +)
+            let totalF = response.map {$0.fat}.reduce(0, +)
+            let totalC = response.map {$0.carb}.reduce(0, +)
+            totalCalValue = totalCal
+            totalCalLabel.text = "\(totalCal.description)kcal"
+            proteinGramLabel.text = "\(totalP.description)g"
+            fatGramLabel.text = "\(totalF.description)g"
+            carbGramLabel.text = "\(totalC.description)g"
+            pChartValue = calculation.calculation(totalPFC: totalP * 4, totalCal: totalCal)
+            fChartValue = calculation.calculation(totalPFC: totalF * 9, totalCal: totalCal)
+            cChartValue = calculation.calculation(totalPFC: totalC * 4, totalCal: totalCal)
         }).disposed(by: disposeBug)
     }
 }
@@ -126,10 +129,10 @@ extension HomePFCViewController {
         let noSelectedSegmentControl = BetterSegmentedControl(
             frame: CGRect(x: 0, y: 0, width: 180.0, height: 30.0),
             segments: LabelSegment.segments(withTitles: ["PFC(g)", "PFC(%)"],
-                                            normalTextColor: .black,
-                                            selectedTextColor: .white),
-            options:[.backgroundColor(.systemBackground),
-                     .indicatorViewBackgroundColor(UIColor.darkGray),
+                                            normalTextColor: .white,
+                                            selectedTextColor: .black),
+            options:[.backgroundColor(.darkGray),
+                     .indicatorViewBackgroundColor(.white),
                      .cornerRadius(15.0),
                      .animationSpringDamping(1.0)])
         noSelectedSegmentControl.addTarget(self, action: #selector(changedSegment(_:)), for: .valueChanged)
@@ -157,14 +160,22 @@ extension HomePFCViewController {
         view.addSubview(self.chartView)
     }
     
+    //代謝データの取得
     func userDefaultsSetUp() {
         let jsonDecoder = JSONDecoder()
-     //   jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         guard let data = UserDefaults.standard.data(forKey: "a"),
-              let dataModel = try? jsonDecoder.decode(BMRModel.self, from: data) else {
+              let dataModel = try? jsonDecoder.decode(BMRModel.self, from: data),
+              let totalBMR = Int(dataModel.total) else {
                   return
               }
-        print(dataModel)
+        let diffCalValue = totalCalValue - totalBMR
         totalBMRLabel.text = "1日の総消費カロリー\(dataModel.total)kcal" ?? "未設定"
+        if diffCalValue < 0 {
+            diffCalLabel.textColor = .blue
+            diffCalLabel.text = "\(diffCalValue)kcal"
+        } else if diffCalValue > 0 {
+            diffCalLabel.textColor = .red
+            diffCalLabel.text = "+\(diffCalValue)kcal"
+        }
     }
 }
