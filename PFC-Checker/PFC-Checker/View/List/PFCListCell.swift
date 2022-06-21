@@ -16,7 +16,7 @@ final class PFCListCell: UITableViewCell {
     @IBOutlet weak var carbValue: UILabel!
     @IBOutlet weak var calorieValue: UILabel!
     @IBOutlet weak var unitValue: UILabel!
-   
+    @IBOutlet weak var countStepper: UIStepper!
     @IBOutlet weak var flagSwich: UISwitch!
     var countvalue:Int = Int()
     private var swichFlag: Bool = true
@@ -32,8 +32,10 @@ final class PFCListCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         flagSwich.addTarget(self, action: #selector(swichFlag(_:)), for: .touchUpInside)
+        countStepper.addTarget(self, action: #selector(tapStepper(_:)), for: .touchUpInside)
         PFCname.font = UIFont(name: "pingfanghk-Medium", size: 20)
         unitValue.font = UIFont(name: "pingfanghk-Medium", size: 15)
+        
     }
     
     @objc func swichFlag(_ sender: UISwitch) {
@@ -48,6 +50,15 @@ final class PFCListCell: UITableViewCell {
         self.catchFlagDelegate?.CatchFlag(row: row, flag: swichFlag)
     }
     
+    @objc func tapStepper(_ sender: UIStepper) {
+        let row = sender.tag
+        let value = Int(sender.value)
+        self.catchCountDelegate?.catchCount(row: row, value: value)
+    }
+    
+    
+    
+    
     func configure(model: PFCcomponentModel) {
         self.mainBackground.layer.cornerRadius = 8
         self.mainBackground.layer.masksToBounds = true
@@ -58,11 +69,12 @@ final class PFCListCell: UITableViewCell {
         calorieValue.text = "\(model.calorie)kcal"
         unitValue.text = "\(model.unitValue)\(model.unit)"
         flagSwich.isOn = model.flag
+        countStepper.value = Double(model.unitValue)
     }
 }
 
 protocol CatchCountProtcol {
-    func catchCount(row: Int,value: Int,flag: Bool)
+    func catchCount(row: Int,value: Int)
 }
 
 protocol CatchFlagProtcol {
