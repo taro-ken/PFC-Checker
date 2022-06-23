@@ -19,6 +19,3 @@ final class PFCcomponentModel: Object {
     @objc dynamic var flag: Bool = true
 }
 
-//final class ItemList: Object {
-//    let list = List<PFCcomponentModel>()
-//}

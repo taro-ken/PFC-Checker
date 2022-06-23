@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,7 +36,7 @@
                                                             <constraint firstAttribute="height" constant="30" id="veU-b8-bRR"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" name="BaseColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gf3-e6-PhQ">
@@ -44,7 +45,7 @@
                                                             <constraint firstAttribute="width" constant="50" id="BxS-xy-HyX"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" name="BaseColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -61,7 +62,7 @@
                                                                     <constraint firstAttribute="height" constant="20" id="duq-pH-s15"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                                <color key="textColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="textColor" name="PColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -72,7 +73,7 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKn-mK-9uE">
                                                                 <rect key="frame" x="0.0" y="0.0" width="57" height="18"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                                <color key="textColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="textColor" name="FColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -83,7 +84,7 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eI9-Qn-bVr">
                                                                 <rect key="frame" x="0.0" y="0.0" width="57" height="18"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                                <color key="textColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="textColor" name="CColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -94,7 +95,7 @@
                                                             <constraint firstAttribute="width" constant="57" id="h8d-eD-cvq"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" name="BaseColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -102,8 +103,12 @@
                                         </subviews>
                                     </stackView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Niv-uv-usp">
-                                        <rect key="frame" x="353.5" y="35" width="12.5" height="24.5"/>
+                                        <rect key="frame" x="342" y="38.5" width="12.5" height="16.5"/>
                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="12.5" id="G0V-Jv-Rb5"/>
+                                            <constraint firstAttribute="height" constant="20" id="LZe-YH-jV8"/>
+                                        </constraints>
                                     </imageView>
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="7R6-so-GZx">
                                         <rect key="frame" x="251" y="51" width="94" height="32"/>
@@ -114,21 +119,20 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Niv-uv-usp" secondAttribute="trailing" constant="5" id="0db-CH-ID4"/>
-                                    <constraint firstItem="Niv-uv-usp" firstAttribute="top" secondItem="x9K-su-Yfb" secondAttribute="top" constant="33" id="5OR-nc-dDz"/>
                                     <constraint firstItem="7R6-so-GZx" firstAttribute="top" secondItem="jCd-BA-nKd" secondAttribute="bottom" constant="10" id="Fpi-Pb-MyH"/>
+                                    <constraint firstItem="Niv-uv-usp" firstAttribute="centerY" secondItem="x9K-su-Yfb" secondAttribute="centerY" id="J5U-8h-34O"/>
                                     <constraint firstAttribute="bottom" secondItem="7R6-so-GZx" secondAttribute="bottom" constant="10" id="Q1m-lr-jT1"/>
                                     <constraint firstItem="JKf-Lj-S3w" firstAttribute="leading" secondItem="x9K-su-Yfb" secondAttribute="leading" constant="18" id="ToR-i0-p1h"/>
                                     <constraint firstItem="7R6-so-GZx" firstAttribute="leading" secondItem="JKf-Lj-S3w" secondAttribute="trailing" constant="5" id="V4s-Q2-W6l"/>
                                     <constraint firstItem="JKf-Lj-S3w" firstAttribute="top" secondItem="x9K-su-Yfb" secondAttribute="top" constant="23" id="VLt-n7-798"/>
-                                    <constraint firstAttribute="bottom" secondItem="Niv-uv-usp" secondAttribute="bottom" constant="32" id="X4y-zX-PP1"/>
                                     <constraint firstItem="jCd-BA-nKd" firstAttribute="centerX" secondItem="7R6-so-GZx" secondAttribute="centerX" id="aiB-cf-gIH"/>
+                                    <constraint firstItem="Niv-uv-usp" firstAttribute="leading" secondItem="7R6-so-GZx" secondAttribute="trailing" constant="-3" id="cpg-dd-udE"/>
                                     <constraint firstItem="jCd-BA-nKd" firstAttribute="top" secondItem="x9K-su-Yfb" secondAttribute="top" constant="10" id="iB8-ei-j5C"/>
                                     <constraint firstAttribute="bottom" secondItem="JKf-Lj-S3w" secondAttribute="bottom" constant="22" id="jTy-IZ-zzU"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="CellColor"/>
                         <constraints>
                             <constraint firstItem="x9K-su-Yfb" firstAttribute="leading" secondItem="6bH-af-mZP" secondAttribute="leading" id="Tgq-ay-d2D"/>
                             <constraint firstItem="x9K-su-Yfb" firstAttribute="top" secondItem="6bH-af-mZP" secondAttribute="top" id="XVC-n1-a32"/>
@@ -164,5 +168,20 @@
     </objects>
     <resources>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <namedColor name="BaseColor">
+            <color red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CColor">
+            <color red="0.46200001239776611" green="0.83799999952316284" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CellColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="FColor">
+            <color red="1" green="0.49300000071525574" blue="0.47400000691413879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PColor">
+            <color red="0.0" green="0.71100002527236938" blue="0.37999999523162842" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

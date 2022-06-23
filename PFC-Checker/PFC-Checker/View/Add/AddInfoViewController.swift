@@ -52,7 +52,7 @@ final class AddInfoViewController: FormViewController {
 
 extension AddInfoViewController {
     private func formSetUp() {
-    
+        
         form +++ Section()
         <<< TextRow(EurekaTagString.settingName){ row in
             row.title = EurekaTagString.settingName
@@ -81,7 +81,7 @@ extension AddInfoViewController {
             }
         }
         
-       form +++ Section()
+        form +++ Section()
         <<< DecimalRow (EurekaTagString.settingP){ row in
             row.title = EurekaTagString.settingP
             row.placeholder = "量を入力"

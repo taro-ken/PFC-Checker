@@ -16,14 +16,14 @@ final class EditViewController: FormViewController {
     private lazy var input: PFCViewModelInput = viewModel
     private lazy var output: PFCViewModelOutput = viewModel
     private let disposeBug = DisposeBag()
-
     private let realm = try! Realm()
+    private  var swichFlag:Bool = Bool()
     var row:Int = Int()
-    var swichFlag:Bool = Bool()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         formSetUp()
+        self.view.backgroundColor = .black
     }
     
     @IBAction func tappedEditButton(_ sender: Any) {
@@ -50,7 +50,6 @@ final class EditViewController: FormViewController {
         input.editInfo(name: nameRow, protein: Int(pRow), fat: Int(fRow), carb: Int(cRow), calorie: Int(calRow), unit: unitRow, flag: swichRow, row: row)
         self.navigationController?.popViewController(animated: true)
     }
-    
 }
 
 extension EditViewController {
@@ -65,7 +64,6 @@ extension EditViewController {
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnChange
             $0.value = data[row].name
-            
         }.cellUpdate { cell, row in
             if !row.isValid {
                 cell.titleLabel?.textColor = .systemRed
@@ -87,7 +85,7 @@ extension EditViewController {
             }
         }
         
-       form +++ Section()
+        form +++ Section()
         <<< DecimalRow (EurekaTagString.settingP){
             $0.title = EurekaTagString.settingP
             $0.placeholder = "量を入力"
@@ -104,7 +102,6 @@ extension EditViewController {
             if !row.isValid {
                 cell.titleLabel?.textColor = .systemRed
             }
-            
             input.pValue.accept(cell.row.value)
             input.calorieSet()
         }

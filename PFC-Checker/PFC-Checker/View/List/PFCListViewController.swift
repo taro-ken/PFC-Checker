@@ -17,12 +17,13 @@ final class PFCListViewController: UIViewController {
     private let pfcListCell = "PFCListCell"
     private let viewModel = PFCViewModel()
     lazy var input: PFCViewModelInput = viewModel
-     lazy var output: PFCViewModelOutput = viewModel
+    lazy var output: PFCViewModelOutput = viewModel
     private let disposeBug = DisposeBag()
     private var editflag = false
-    let realm = try! Realm()
-    var pfcComponentModel:Results<PFCcomponentModel>!
-
+    private let generator = UIImpactFeedbackGenerator(style: .heavy)
+    private let realm = try! Realm()
+    private var pfcComponentModel:Results<PFCcomponentModel>!
+    
     
     @IBOutlet weak var pfcTableView: UITableView! {
         didSet {
@@ -92,7 +93,7 @@ extension PFCListViewController: UITableViewDelegate,UITableViewDataSource {
         if editingStyle == .delete {
             try! realm.write {
                 realm.delete(self.output.pfcModels[indexPath.row])
-              }
+            }
             output.update()
         }
     }
@@ -100,6 +101,7 @@ extension PFCListViewController: UITableViewDelegate,UITableViewDataSource {
 
 extension PFCListViewController: CatchCountProtcol {
     func catchCount(row: Int, value: Int) {
+        generator.impactOccurred()
         input.catchCount(row: row, value: value)
     }
 }
@@ -120,7 +122,7 @@ extension PFCListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate 
     }
     
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-      return NSAttributedString(string: "ホーム画面から追加しましょう")
-     }
+        return NSAttributedString(string: "ホーム画面から追加しましょう")
+    }
 }
 

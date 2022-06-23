@@ -32,7 +32,6 @@ final class BMRViewController: UIViewController {
         setup()
     }
     
-    
     @IBAction func tappedAddButton(_ sender: Any) {
         if ageTextField.text!.count == 0
             || toolTextField.text!.count == 0
@@ -68,8 +67,6 @@ final class BMRViewController: UIViewController {
         input.bmrCalculation(sex: sexState.selectedSegmentIndex, age: ageTextField.text, tool: toolTextField.text, weight: weightTextField.text, active: activeState.selectedSegmentIndex)
     }
     
-    
-    
     private func bind() {
         output.bmrValue.bind(to: bmrLabel.rx.text).disposed(by: disposeBug)
         output.totalBMRValue.bind(to: totalBMRLabel.rx.text).disposed(by: disposeBug)
@@ -90,8 +87,8 @@ extension BMRViewController {
         calculationButton.layer.shadowColor = UIColor.gray.cgColor
         calculationButton.layer.shadowOffset = CGSize(width: 2, height: 1)
         
-        ageTextField.keyboardType = .numberPad
-        toolTextField.keyboardType = .numberPad
-        weightTextField.keyboardType = .numberPad
+        ageTextField.keyboardType = .decimalPad
+        toolTextField.keyboardType = .decimalPad
+        weightTextField.keyboardType = .decimalPad
     }
 }

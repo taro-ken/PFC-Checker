@@ -1,88 +1,95 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "BetterSegmentedControl",
-        "repositoryURL": "https://github.com/gmarm/BetterSegmentedControl",
-        "state": {
-          "branch": null,
-          "revision": "a2b2116761f71320cee7e69b4249863f0f372c71",
-          "version": "2.0.1"
-        }
-      },
-      {
-        "package": "Charts",
-        "repositoryURL": "https://github.com/danielgindi/Charts",
-        "state": {
-          "branch": "master",
-          "revision": "b38b8d45a8cbda9f0f2a3566778ed114f06056b7",
-          "version": null
-        }
-      },
-      {
-        "package": "DZNEmptyDataSet",
-        "repositoryURL": "https://github.com/dzenbot/DZNEmptyDataSet",
-        "state": {
-          "branch": "master",
-          "revision": "9bffa69a83a9fa58a14b3cf43cb6dd8a63774179",
-          "version": null
-        }
-      },
-      {
-        "package": "Eureka",
-        "repositoryURL": "https://github.com/xmartlabs/Eureka",
-        "state": {
-          "branch": "master",
-          "revision": "cd2a28549fc623dbd84e27fe1f063c2fbf40ccac",
-          "version": null
-        }
-      },
-      {
-        "package": "RealmDatabase",
-        "repositoryURL": "https://github.com/realm/realm-core",
-        "state": {
-          "branch": null,
-          "revision": "fd48276f88f3d55dbdcdc9e8cbf32541811d5865",
-          "version": "12.1.0"
-        }
-      },
-      {
-        "package": "Realm",
-        "repositoryURL": "https://github.com/realm/realm-swift",
-        "state": {
-          "branch": "master",
-          "revision": "d02407e9cc22758aa8d20f0a5dd172598bdf9212",
-          "version": null
-        }
-      },
-      {
-        "package": "RxSwift",
-        "repositoryURL": "https://github.com/ReactiveX/RxSwift",
-        "state": {
-          "branch": "main",
-          "revision": "e0ab8c4e18baf6679a65b325155923276b832687",
-          "version": null
-        }
-      },
-      {
-        "package": "swift-algorithms",
-        "repositoryURL": "https://github.com/apple/swift-algorithms",
-        "state": {
-          "branch": null,
-          "revision": "b14b7f4c528c942f121c8b860b9410b2bf57825e",
-          "version": "1.0.0"
-        }
-      },
-      {
-        "package": "swift-numerics",
-        "repositoryURL": "https://github.com/apple/swift-numerics",
-        "state": {
-          "branch": null,
-          "revision": "0a5bc04095a675662cf24757cc0640aa2204253b",
-          "version": "1.0.2"
-        }
+  "pins" : [
+    {
+      "identity" : "bettersegmentedcontrol",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gmarm/BetterSegmentedControl",
+      "state" : {
+        "revision" : "a2b2116761f71320cee7e69b4249863f0f372c71",
+        "version" : "2.0.1"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "charts",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/danielgindi/Charts",
+      "state" : {
+        "branch" : "master",
+        "revision" : "b38b8d45a8cbda9f0f2a3566778ed114f06056b7"
+      }
+    },
+    {
+      "identity" : "dznemptydataset",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dzenbot/DZNEmptyDataSet",
+      "state" : {
+        "branch" : "master",
+        "revision" : "9bffa69a83a9fa58a14b3cf43cb6dd8a63774179"
+      }
+    },
+    {
+      "identity" : "eureka",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/xmartlabs/Eureka",
+      "state" : {
+        "branch" : "master",
+        "revision" : "cd2a28549fc623dbd84e27fe1f063c2fbf40ccac"
+      }
+    },
+    {
+      "identity" : "iqkeyboardmanager",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hackiftekhar/IQKeyboardManager",
+      "state" : {
+        "branch" : "master",
+        "revision" : "f0fad1d51f9710cbd0ac6d49121d8b7fddd5c7f6"
+      }
+    },
+    {
+      "identity" : "realm-core",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-core",
+      "state" : {
+        "revision" : "fd48276f88f3d55dbdcdc9e8cbf32541811d5865",
+        "version" : "12.1.0"
+      }
+    },
+    {
+      "identity" : "realm-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-swift",
+      "state" : {
+        "branch" : "master",
+        "revision" : "d02407e9cc22758aa8d20f0a5dd172598bdf9212"
+      }
+    },
+    {
+      "identity" : "rxswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ReactiveX/RxSwift",
+      "state" : {
+        "branch" : "main",
+        "revision" : "e0ab8c4e18baf6679a65b325155923276b832687"
+      }
+    },
+    {
+      "identity" : "swift-algorithms",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-algorithms",
+      "state" : {
+        "revision" : "b14b7f4c528c942f121c8b860b9410b2bf57825e",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "swift-numerics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-numerics",
+      "state" : {
+        "revision" : "0a5bc04095a675662cf24757cc0640aa2204253b",
+        "version" : "1.0.2"
+      }
+    }
+  ],
+  "version" : 2
 }

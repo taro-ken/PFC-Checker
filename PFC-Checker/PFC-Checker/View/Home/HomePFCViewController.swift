@@ -27,7 +27,7 @@ final class HomePFCViewController: UIViewController {
     private lazy var input: PFCViewModelInput = viewModel
     private lazy var output: PFCViewModelOutput = viewModel
     private let disposeBug = DisposeBag()
-   private let generator = UIImpactFeedbackGenerator(style: .heavy)
+    private let generator = UIImpactFeedbackGenerator(style: .heavy)
     
     private  var pChartValue: Int = Int()
     private  var fChartValue: Int = Int()
@@ -70,11 +70,13 @@ final class HomePFCViewController: UIViewController {
     }
     
     @IBAction func tapShowListButton(_ sender: Any) {
+        generator.impactOccurred()
         let vc = UIStoryboard.init(name: "PFCList", bundle: nil).instantiateInitialViewController() as! PFCListViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func tappedBMR(_ sender: Any) {
+        generator.impactOccurred()
         if UserDefaults.standard.object(forKey: "a") == nil {
             let vc = UIStoryboard.init(name: "BMR", bundle: nil).instantiateInitialViewController() as! BMRViewController
             self.navigationController?.pushViewController(vc, animated: true)
@@ -149,7 +151,7 @@ extension HomePFCViewController {
             PieChartDataEntry(value: Double(cChartValue) / 100, label: "炭水化物"),
         ]
         let dataSet = PieChartDataSet(entries: dataEntries, label: "")
-      //  dataSet.colors = ChartColorTemplates.vordiplom()
+        //  dataSet.colors = ChartColorTemplates.vordiplom()
         dataSet.colors = [UIColor(named: "PColor")!,UIColor(named: "FColor")!,UIColor(named: "CColor")!]
         dataSet.valueTextColor = UIColor.black
         dataSet.entryLabelColor = UIColor.black
@@ -166,8 +168,8 @@ extension HomePFCViewController {
         guard let data = UserDefaults.standard.data(forKey: "a"),
               let dataModel = try? jsonDecoder.decode(BMRModel.self, from: data),
               let totalBMR = Int(dataModel.total) else {
-                  return
-              }
+            return
+        }
         let diffCalValue = totalCalValue - totalBMR
         totalBMRLabel.text = "1日の総消費カロリー\(dataModel.total)kcal" ?? "未設定"
         if diffCalValue < 0 {
