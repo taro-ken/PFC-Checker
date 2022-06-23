@@ -31,7 +31,7 @@ final class EditBMRViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
-        dataFetch()
+        FetchData()
         setup()
     }
     
@@ -91,19 +91,19 @@ extension EditBMRViewController {
         editCalculationButton.layer.shadowColor = UIColor.gray.cgColor
         editCalculationButton.layer.shadowOffset = CGSize(width: 2, height: 1)
         
-        editAgeTextField.keyboardType = .numberPad
-        editToolTextField.keyboardType = .numberPad
-        editWeightTextField.keyboardType = .numberPad
+        editAgeTextField.keyboardType = .decimalPad
+        editToolTextField.keyboardType = .decimalPad
+        editWeightTextField.keyboardType = .decimalPad
     }
     
-    private func dataFetch() {
+    private func FetchData() {
         let jsonDecoder = JSONDecoder()
         guard let data = UserDefaults.standard.data(forKey: "a"),
               let dataModel = try? jsonDecoder.decode(BMRModel.self, from: data),
               let sex = dataModel.sex,
               let active = dataModel.active else {
-                  return
-              }
+            return
+        }
         editSexState.selectedSegmentIndex = sex
         editAgeTextField.text = dataModel.age
         editToolTextField.text = dataModel.tool

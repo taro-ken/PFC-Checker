@@ -5,7 +5,6 @@
 //  Created by 木元健太郎 on 2022/06/02.
 //
 
-import Foundation
 import RxSwift
 import RxCocoa
 import RealmSwift
@@ -60,7 +59,6 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
         pfc.unit = unit
         pfc.unitValue = unitValue
         pfc.flag = flag
-        
         try! realm.write() {
             realm.add(pfc)
             update()
@@ -112,7 +110,6 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
             pfcData[row].flag = flag
             update()
         }
-        
     }
     
     func calorieSet() {
@@ -196,8 +193,8 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
     private(set) var pfcModels:[PFCcomponentModel] = []
     private(set) var models = BehaviorRelay<[PFCcomponentModel]>(value: [])
     
-    var bmrValue = BehaviorRelay<String>(value: String())
-    var totalBMRValue = BehaviorRelay<String>(value: String())
+    let bmrValue = BehaviorRelay<String>(value: String())
+    let totalBMRValue = BehaviorRelay<String>(value: String())
     
     func update() {
         let pfcData = realm.objects(PFCcomponentModel.self)

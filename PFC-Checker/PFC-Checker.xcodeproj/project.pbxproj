@@ -40,6 +40,8 @@
 		B4083AF12853900D00853E19 /* BMRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AF02853900D00853E19 /* BMRViewController.swift */; };
 		B4083AF32853901D00853E19 /* BMR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4083AF22853901D00853E19 /* BMR.storyboard */; };
 		B4083AF5285439B800853E19 /* calculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AF4285439B800853E19 /* calculation.swift */; };
+		B484AF6B286467500085B9E9 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B484AF6A286467500085B9E9 /* IQKeyboardManagerSwift */; };
+		B484AF6D28646FB00085B9E9 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B484AF6C28646FB00085B9E9 /* ShadowView.swift */; };
 		B493D8AE2858BA5F0021F52E /* BMRModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B493D8AD2858BA5F0021F52E /* BMRModel.swift */; };
 		B4F8AD782855BB0200023556 /* Eureka in Frameworks */ = {isa = PBXBuildFile; productRef = B4F8AD772855BB0200023556 /* Eureka */; };
 		B4F8AD7A2856CC3700023556 /* EurekaTagString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AD792856CC3700023556 /* EurekaTagString.swift */; };
@@ -89,6 +91,7 @@
 		B4083AF02853900D00853E19 /* BMRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMRViewController.swift; sourceTree = "<group>"; };
 		B4083AF22853901D00853E19 /* BMR.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BMR.storyboard; sourceTree = "<group>"; };
 		B4083AF4285439B800853E19 /* calculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calculation.swift; sourceTree = "<group>"; };
+		B484AF6C28646FB00085B9E9 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		B493D8AB2858AB2B0021F52E /* PFC-CheckerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PFC-CheckerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B493D8AC2858AB2B0021F52E /* PFC-CheckerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PFC-CheckerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B493D8AD2858BA5F0021F52E /* BMRModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMRModel.swift; sourceTree = "<group>"; };
@@ -106,6 +109,7 @@
 				B400385328588719007C64CB /* DZNEmptyDataSet in Frameworks */,
 				B4083ABD285360DF00853E19 /* RxRelay in Frameworks */,
 				B4083AC22853615A00853E19 /* Realm in Frameworks */,
+				B484AF6B286467500085B9E9 /* IQKeyboardManagerSwift in Frameworks */,
 				B4083AEE285372CA00853E19 /* BetterSegmentedControl in Frameworks */,
 				B4083AC42853615A00853E19 /* RealmSwift in Frameworks */,
 				B4083ABB285360DF00853E19 /* RxCocoa in Frameworks */,
@@ -178,6 +182,7 @@
 				B4083AC92853638900853E19 /* UITextField+.swift */,
 				B4083AF4285439B800853E19 /* calculation.swift */,
 				B4F8AD792856CC3700023556 /* EurekaTagString.swift */,
+				B484AF6C28646FB00085B9E9 /* ShadowView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -297,6 +302,7 @@
 				B4083AED285372CA00853E19 /* BetterSegmentedControl */,
 				B4F8AD772855BB0200023556 /* Eureka */,
 				B400385228588719007C64CB /* DZNEmptyDataSet */,
+				B484AF6A286467500085B9E9 /* IQKeyboardManagerSwift */,
 			);
 			productName = "PFC-Checker";
 			productReference = B4F8AD7B2856CEA100023556 /* PFC-Checker.app */;
@@ -383,6 +389,7 @@
 				B4083AEC285372C900853E19 /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */,
 				B4F8AD762855BB0200023556 /* XCRemoteSwiftPackageReference "Eureka" */,
 				B400385128588719007C64CB /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */,
+				B484AF69286467500085B9E9 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = B4083A7D2853607800853E19;
 			projectDirPath = "";
@@ -566,6 +573,7 @@
 				B4083ADF285363B200853E19 /* HomePFCViewController.swift in Sources */,
 				B493D8AE2858BA5F0021F52E /* BMRModel.swift in Sources */,
 				B4083AE7285363B200853E19 /* PFCListViewController.swift in Sources */,
+				B484AF6D28646FB00085B9E9 /* ShadowView.swift in Sources */,
 				B4083AE3285363B200853E19 /* AddInfoViewController.swift in Sources */,
 				B4083AF12853900D00853E19 /* BMRViewController.swift in Sources */,
 				B4083AF5285439B800853E19 /* calculation.swift in Sources */,
@@ -956,6 +964,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		B484AF69286467500085B9E9 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		B4F8AD762855BB0200023556 /* XCRemoteSwiftPackageReference "Eureka" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/xmartlabs/Eureka";
@@ -1006,6 +1022,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B4083AEC285372C900853E19 /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */;
 			productName = BetterSegmentedControl;
+		};
+		B484AF6A286467500085B9E9 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B484AF69286467500085B9E9 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 		B4F8AD772855BB0200023556 /* Eureka */ = {
 			isa = XCSwiftPackageProductDependency;
