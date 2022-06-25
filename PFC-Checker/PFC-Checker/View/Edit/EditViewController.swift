@@ -23,7 +23,6 @@ final class EditViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         formSetUp()
-        self.view.backgroundColor = .black
     }
     
     @IBAction func tappedEditButton(_ sender: Any) {
@@ -47,7 +46,7 @@ final class EditViewController: FormViewController {
         else {
             return
         }
-        input.editInfo(name: nameRow, protein: Int(pRow), fat: Int(fRow), carb: Int(cRow), calorie: Int(calRow), unit: unitRow, flag: swichRow, row: row)
+        input.editInfo(name: nameRow, protein: pRow, fat: fRow, carb: cRow, calorie: calRow, unit: unitRow, flag: swichRow, row: row)
         self.navigationController?.popViewController(animated: true)
     }
 }
@@ -88,81 +87,79 @@ extension EditViewController {
         form +++ Section()
         <<< DecimalRow (EurekaTagString.settingP){
             $0.title = EurekaTagString.settingP
-            $0.placeholder = "量を入力"
+            $0.placeholder = "値を入力"
             $0.tag = EurekaTagString.settingP
             $0.value = Double(data[row].protein) / unitValue
             
-            $0.useFormatterDuringInput = true
-            let formatter = DecimalFormatter()
-            formatter.locale = .current
-            formatter.numberStyle = .decimal
-            formatter.minimumFractionDigits = 0
-            $0.formatter = formatter
+            $0.add(rule: RuleRequired())
+            $0.validationOptions = .validatesOnChange
+            $0.useFormatterOnDidBeginEditing = false
+            $0.useFormatterDuringInput = false
+            let numberFormatter = NumberFormatter()
+             numberFormatter.maximumFractionDigits = 1
+             numberFormatter.numberStyle = NumberFormatter.Style.decimal
+            $0.formatter = numberFormatter
         }.cellUpdate { [self] cell, row in
             if !row.isValid {
                 cell.titleLabel?.textColor = .systemRed
             }
-            input.pValue.accept(cell.row.value)
-            input.calorieSet()
         }
         
         <<< DecimalRow(EurekaTagString.settingF){
             $0.title = EurekaTagString.settingF
-            $0.placeholder = "量を入力"
+            $0.placeholder = "値を入力"
             $0.tag = EurekaTagString.settingF
             $0.value = Double(data[row].fat) / unitValue
-            $0.useFormatterDuringInput = true
-            let formatter = DecimalFormatter()
-            formatter.locale = .current
-            formatter.numberStyle = .decimal
-            formatter.minimumFractionDigits = 0
-            $0.formatter = formatter
+            $0.add(rule: RuleRequired())
+            $0.validationOptions = .validatesOnChange
+            $0.useFormatterOnDidBeginEditing = false
+            $0.useFormatterDuringInput = false
+            let numberFormatter = NumberFormatter()
+             numberFormatter.maximumFractionDigits = 1
+             numberFormatter.numberStyle = NumberFormatter.Style.decimal
+            $0.formatter = numberFormatter
         }.cellUpdate { [self] cell, row in
             if !row.isValid {
                 cell.titleLabel?.textColor = .systemRed
             }
-            input.fValue.accept(cell.row.value)
-            input.calorieSet()
         }
         
         <<< DecimalRow(EurekaTagString.settingC){
             $0.title = EurekaTagString.settingC
-            $0.placeholder = "量を入力"
+            $0.placeholder = "値を入力"
             $0.tag = EurekaTagString.settingC
             $0.value = Double(data[row].carb) / unitValue
-            $0.useFormatterDuringInput = true
-            let formatter = DecimalFormatter()
-            formatter.locale = .current
-            formatter.numberStyle = .decimal
-            formatter.minimumFractionDigits = 0
-            $0.formatter = formatter
+            $0.add(rule: RuleRequired())
+            $0.validationOptions = .validatesOnChange
+            $0.useFormatterOnDidBeginEditing = false
+            $0.useFormatterDuringInput = false
+            let numberFormatter = NumberFormatter()
+             numberFormatter.maximumFractionDigits = 1
+             numberFormatter.numberStyle = NumberFormatter.Style.decimal
+            $0.formatter = numberFormatter
         }.cellUpdate { [self] cell, row in
             if !row.isValid {
                 cell.titleLabel?.textColor = .systemRed
             }
-            input.cValue.accept(cell.row.value)
-            input.calorieSet()
         }
         
         <<< DecimalRow(EurekaTagString.settingCal){
             $0.title = EurekaTagString.settingCal
-            $0.placeholder = "タップして取得"
+            $0.placeholder = "値を入力"
             $0.tag = EurekaTagString.settingCal
             $0.value = Double(data[row].calorie) / unitValue
-            $0.useFormatterDuringInput = true
-            let formatter = DecimalFormatter()
-            formatter.locale = .current
-            formatter.numberStyle = .decimal
-            formatter.minimumFractionDigits = 0
-            $0.formatter = formatter
+            $0.add(rule: RuleRequired())
+            $0.validationOptions = .validatesOnChange
+            $0.useFormatterOnDidBeginEditing = false
+            $0.useFormatterDuringInput = false
+            let numberFormatter = NumberFormatter()
+             numberFormatter.maximumFractionDigits = 1
+             numberFormatter.numberStyle = NumberFormatter.Style.decimal
+            $0.formatter = numberFormatter
         }.cellUpdate { [self] cell, row in
             if !row.isValid {
                 cell.titleLabel?.textColor = .systemRed
             }
-            input.calValue.asDriver().drive { value in
-                row.value = value
-            }.disposed(by: disposeBug)
-            input.calorieSet()
         }
         
         +++ Section()

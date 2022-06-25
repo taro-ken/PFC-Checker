@@ -10,10 +10,10 @@ import RealmSwift
 
 final class PFCcomponentModel: Object {
     @objc dynamic var name: String?
-    @objc dynamic var protein: Int = 0
-    @objc dynamic var fat: Int = 0
-    @objc dynamic var carb: Int = 0
-    @objc dynamic var calorie: Int = 0
+    @objc dynamic var protein: Double = 0
+    @objc dynamic var fat: Double = 0
+    @objc dynamic var carb: Double = 0
+    @objc dynamic var calorie: Double = 0
     @objc dynamic var unit: String = ""
     @objc dynamic var unitValue: Int = 0
     @objc dynamic var flag: Bool = true

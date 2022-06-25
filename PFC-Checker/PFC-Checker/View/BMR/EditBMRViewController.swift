@@ -82,13 +82,13 @@ extension EditBMRViewController {
         editButton.layer.cornerRadius = 10
         editButton.layer.shadowOpacity = 1
         editButton.layer.shadowRadius = 2
-        editButton.layer.shadowColor = UIColor.gray.cgColor
+        editButton.layer.shadowColor = UIColor.black.cgColor
         editButton.layer.shadowOffset = CGSize(width: 2, height: 1)
         
         editCalculationButton.layer.cornerRadius = 10
         editCalculationButton.layer.shadowOpacity = 1
         editCalculationButton.layer.shadowRadius = 2
-        editCalculationButton.layer.shadowColor = UIColor.gray.cgColor
+        editCalculationButton.layer.shadowColor = UIColor.black.cgColor
         editCalculationButton.layer.shadowOffset = CGSize(width: 2, height: 1)
         
         editAgeTextField.keyboardType = .decimalPad

@@ -57,10 +57,10 @@ final class PFCListCell: UITableViewCell {
         self.mainBackground.layer.cornerRadius = 8
         self.mainBackground.layer.masksToBounds = true
         PFCname.text = model.name
-        proteinValue.text = "P/ \(model.protein)g"
-        fatValue.text = "F/ \(model.fat)g"
-        carbValue.text = "C/ \(model.carb)g"
-        calorieValue.text = "\(model.calorie)kcal"
+        proteinValue.text = "P/ \(Int(model.protein))g"
+        fatValue.text = "F/ \(Int(model.fat))g"
+        carbValue.text = "C/ \(Int(model.carb))g"
+        calorieValue.text = "\(Int(model.calorie))kcal"
         unitValue.text = "\(model.unitValue)\(model.unit)"
         flagSwich.isOn = model.flag
         countStepper.value = Double(model.unitValue)
