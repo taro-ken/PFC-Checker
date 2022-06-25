@@ -11,15 +11,14 @@ import RealmSwift
 import UIKit
 
 protocol PFCViewModelInput {
-    func addInfo(name: String?, protein: Int, fat: Int, carb: Int, calorie: Int, unit: String?, unitValue: Int, flag: Bool)
+    func addInfo(name: String?, protein: Double, fat: Double, carb: Double, calorie: Double, unit: String?, unitValue: Int, flag: Bool)
     func catchCount(row: Int, value: Int)
     func catchFlag(row: Int, flag: Bool)
-    func editInfo(name: String?, protein: Int, fat: Int, carb: Int, calorie: Int, unit: String?, flag: Bool, row: Int)
+    func editInfo(name: String?, protein: Double, fat: Double, carb: Double, calorie: Double, unit: String?, flag: Bool, row: Int)
     var pValue: BehaviorRelay<Double?> { get }
     var fValue: BehaviorRelay<Double?> { get }
     var cValue: BehaviorRelay<Double?> { get }
     var calValue: BehaviorRelay<Double?> { get }
-    func calorieSet()
     func bmrCalculation(sex: Int, age: String?, tool: String?, weight: String?, active: Int)
 }
 
@@ -35,6 +34,7 @@ protocol PFCViewModelOutput {
 
 final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
     
+    
     private let realm = try! Realm()
     private let disposeBug = DisposeBag()
     
@@ -46,16 +46,16 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
     
     //MARK: -/*inputについての記述*/
     private let addInfo = PublishRelay<PFCcomponentModel>()
-    func addInfo(name: String?,protein: Int,fat: Int,carb: Int,calorie: Int,unit: String?,unitValue: Int,flag: Bool) {
+    func addInfo(name: String?,protein: Double,fat: Double,carb: Double,calorie: Double,unit: String?,unitValue: Int,flag: Bool) {
         guard let unit = unit else {
             return
         }
         let pfc = PFCcomponentModel()
         pfc.name = name
-        pfc.protein = protein * unitValue
-        pfc.fat = fat * unitValue
-        pfc.carb = carb * unitValue
-        pfc.calorie = calorie * unitValue
+        pfc.protein = protein * Double(unitValue)
+        pfc.fat = fat * Double(unitValue)
+        pfc.carb = carb * Double(unitValue)
+        pfc.calorie = calorie * Double(unitValue)
         pfc.unit = unit
         pfc.unitValue = unitValue
         pfc.flag = flag
@@ -65,7 +65,7 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
         }
     }
     
-    func editInfo(name: String?, protein: Int, fat: Int, carb: Int, calorie: Int, unit: String?, flag: Bool, row: Int) {
+    func editInfo(name: String?, protein: Double, fat: Double, carb: Double, calorie: Double, unit: String?, flag: Bool, row: Int) {
         let pfcData = realm.objects(PFCcomponentModel.self)
         let unitValue = pfcData[row].unitValue
         guard let unit = unit else {
@@ -73,10 +73,10 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
         }
         try! realm .write {
             pfcData[row].name = name
-            pfcData[row].protein = protein * unitValue
-            pfcData[row].fat = fat * unitValue
-            pfcData[row].carb = carb * unitValue
-            pfcData[row].calorie = calorie * unitValue
+            pfcData[row].protein = protein * Double(unitValue)
+            pfcData[row].fat = fat * Double(unitValue)
+            pfcData[row].carb = carb * Double(unitValue)
+            pfcData[row].calorie = calorie * Double(unitValue)
             pfcData[row].unit = unit
             pfcData[row].flag = flag
             update()
@@ -85,20 +85,18 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
     
     func catchCount(row: Int, value: Int) {
         let pfc = PFCcomponentModel()
-        
         let pfcData = realm.objects(PFCcomponentModel.self)
-        
-        let baseP = pfcData[row].protein / pfcData[row].unitValue
-        let baseF = pfcData[row].fat / pfcData[row].unitValue
-        let baseC = pfcData[row].carb / pfcData[row].unitValue
-        let baseCalorie = pfcData[row].calorie / pfcData[row].unitValue
+        let baseP = pfcData[row].protein / Double(pfcData[row].unitValue)
+        let baseF = pfcData[row].fat / Double(pfcData[row].unitValue)
+        let baseC = pfcData[row].carb / Double(pfcData[row].unitValue)
+        let baseCalorie = pfcData[row].calorie / Double(pfcData[row].unitValue)
         
         try! realm.write {
             pfcData[row].unitValue = (pfcData[row].unitValue / pfcData[row].unitValue) * value
-            pfcData[row].protein = baseP * value
-            pfcData[row].fat = baseF * value
-            pfcData[row].carb = baseC * value
-            pfcData[row].calorie = baseCalorie * value
+            pfcData[row].protein = baseP * Double(value)
+            pfcData[row].fat = baseF * Double(value)
+            pfcData[row].carb = baseC * Double(value)
+            pfcData[row].calorie = baseCalorie * Double(value)
             update()
         }
     }
@@ -111,47 +109,6 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
             update()
         }
     }
-    
-    func calorieSet() {
-        let pObservable =  Observable<Double>.create { [self] observer -> Disposable in
-            pValue.bind { response in
-                guard let response = response else {
-                    return
-                }
-                observer.onNext(response)
-                observer.onCompleted()
-            }.disposed(by: disposeBug)
-            return Disposables.create()
-        }
-        
-        let fObservable =  Observable<Double>.create { [self] observer -> Disposable in
-            fValue.bind { response in
-                guard let response = response else {
-                    return
-                }
-                observer.onNext(response)
-                observer.onCompleted()
-            }.disposed(by: disposeBug)
-            return Disposables.create()
-        }
-        
-        let cObservable =  Observable<Double>.create { [self] observer -> Disposable in
-            cValue.bind { response in
-                guard let response = response else {
-                    return
-                }
-                observer.onNext(response)
-                observer.onCompleted()
-            }.disposed(by: disposeBug)
-            return Disposables.create()
-        }
-        
-        Observable.combineLatest(pObservable,fObservable,cObservable).map{ [self] p,f,c in
-            let mix = (p * 4)+(f * 9)+(c * 4)
-            calValue.accept(mix)
-        }.subscribe().disposed(by: disposeBug)
-    }
-    
     
     func bmrCalculation(sex: Int, age: String?, tool: String?, weight: String?, active: Int) {
         guard let _age = age,
@@ -195,6 +152,7 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
     
     let bmrValue = BehaviorRelay<String>(value: String())
     let totalBMRValue = BehaviorRelay<String>(value: String())
+    
     
     func update() {
         let pfcData = realm.objects(PFCcomponentModel.self)

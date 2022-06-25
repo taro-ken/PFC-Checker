@@ -38,7 +38,7 @@ final class HomePFCViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem?.tintColor = .darkGray
+        navigationItem.backBarButtonItem?.tintColor = UIColor(named: "ButtonColor")
         uiSetUp()
         chartViewSetUp()
         chartView.isHidden = true
@@ -54,9 +54,11 @@ final class HomePFCViewController: UIViewController {
     
     @objc func changedSegment(_ sender: BetterSegmentedControl) {
         if sender.index == 0 {
+            generator.impactOccurred()
             chartView.isHidden = true
             pfcStac.isHidden = false
         } else {
+            generator.impactOccurred()
             chartView.isHidden = false
             chartViewSetUp()
             pfcStac.isHidden = true
@@ -93,14 +95,14 @@ final class HomePFCViewController: UIViewController {
             let totalP = response.map {$0.protein}.reduce(0, +)
             let totalF = response.map {$0.fat}.reduce(0, +)
             let totalC = response.map {$0.carb}.reduce(0, +)
-            totalCalValue = totalCal
-            totalCalLabel.text = "\(totalCal.description)kcal"
-            proteinGramLabel.text = "\(totalP.description)g"
-            fatGramLabel.text = "\(totalF.description)g"
-            carbGramLabel.text = "\(totalC.description)g"
-            pChartValue = calculation.calculation(totalPFC: totalP * 4, totalCal: totalCal)
-            fChartValue = calculation.calculation(totalPFC: totalF * 9, totalCal: totalCal)
-            cChartValue = calculation.calculation(totalPFC: totalC * 4, totalCal: totalCal)
+            totalCalValue = Int(totalCal)
+            totalCalLabel.text = "\(Int(totalCal).description)kcal"
+            proteinGramLabel.text = "\(Int(totalP).description)g"
+            fatGramLabel.text = "\(Int(totalF).description)g"
+            carbGramLabel.text = "\(Int(totalC).description)g"
+            pChartValue = calculation.calculation(totalPFC: Int(totalP) * 4, totalCal: Int(totalCal))
+            fChartValue = calculation.calculation(totalPFC: Int(totalF) * 9, totalCal: Int(totalCal))
+            cChartValue = calculation.calculation(totalPFC: Int(totalC) * 4, totalCal: Int(totalCal))
         }).disposed(by: disposeBug)
     }
 }
@@ -113,7 +115,7 @@ extension HomePFCViewController {
         mainTopVew.layer.cornerRadius = 20
         mainTopVew.layer.shadowOpacity = 0.5
         mainTopVew.layer.shadowRadius = 2
-        mainTopVew.layer.shadowColor = UIColor.gray.cgColor
+        mainTopVew.layer.shadowColor = UIColor.black.cgColor
         mainTopVew.layer.shadowOffset = CGSize(width: 2, height: 2)
         diffCalLabel.layer.cornerRadius = 20
         
@@ -171,12 +173,19 @@ extension HomePFCViewController {
             return
         }
         let diffCalValue = totalCalValue - totalBMR
-        totalBMRLabel.text = "1日の総消費カロリー\(dataModel.total)kcal" ?? "未設定"
+      //  diffCalLabel.text = "未設定"
+        
+        if totalBMR == 0 {
+            totalBMRLabel.text = "消費カロリーを設定してください"
+        } else {
+            totalBMRLabel.text = "1日の総消費カロリー\(dataModel.total)kcal"
+        }
+        
         if diffCalValue < 0 {
-            diffCalLabel.textColor = .blue
+            diffCalLabel.textColor = UIColor(named: "-Color")
             diffCalLabel.text = "\(diffCalValue)kcal"
         } else if diffCalValue > 0 {
-            diffCalLabel.textColor = .red
+            diffCalLabel.textColor = UIColor(named: "+Color")
             diffCalLabel.text = "+\(diffCalValue)kcal"
         }
     }

@@ -78,13 +78,13 @@ extension BMRViewController {
         saveButton.layer.cornerRadius = 10
         saveButton.layer.shadowOpacity = 1
         saveButton.layer.shadowRadius = 2
-        saveButton.layer.shadowColor = UIColor.gray.cgColor
+        saveButton.layer.shadowColor = UIColor.black.cgColor
         saveButton.layer.shadowOffset = CGSize(width: 2, height: 1)
         
         calculationButton.layer.cornerRadius = 10
         calculationButton.layer.shadowOpacity = 1
         calculationButton.layer.shadowRadius = 2
-        calculationButton.layer.shadowColor = UIColor.gray.cgColor
+        calculationButton.layer.shadowColor = UIColor.black.cgColor
         calculationButton.layer.shadowOffset = CGSize(width: 2, height: 1)
         
         ageTextField.keyboardType = .decimalPad
