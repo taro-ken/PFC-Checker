@@ -169,7 +169,7 @@
     <resources>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <namedColor name="BaseColor">
-            <color red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.26100000739097595" green="0.26100000739097595" blue="0.26100000739097595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="CColor">
             <color red="0.46200001239776611" green="0.83799999952316284" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
