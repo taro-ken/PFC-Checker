@@ -31,9 +31,15 @@ protocol PFCViewModelOutput {
     var totalBMRValue: BehaviorRelay<String> { get }
 }
 
+protocol ViewModelType {
+  var input: PFCViewModelInput { get }
+  var output: PFCViewModelOutput { get }
+}
 
-final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput {
-    
+
+final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput, ViewModelType {
+    var input: PFCViewModelInput { return self }
+    var output: PFCViewModelOutput { return self }
     
     private let realm = try! Realm()
     private let disposeBug = DisposeBag()

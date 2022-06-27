@@ -23,9 +23,7 @@ final class HomePFCViewController: UIViewController {
     @IBOutlet weak var carbGramLabel: UILabel!
     @IBOutlet weak var totalBMRLabel: UILabel!
     
-    private let viewModel = PFCViewModel()
-    private lazy var input: PFCViewModelInput = viewModel
-    private lazy var output: PFCViewModelOutput = viewModel
+    private let viewModel: ViewModelType = PFCViewModel()
     private let disposeBug = DisposeBag()
     private let generator = UIImpactFeedbackGenerator(style: .heavy)
     
@@ -48,7 +46,7 @@ final class HomePFCViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        output.update()
+        viewModel.output.update()
         userDefaultsSetUp()
     }
     
@@ -90,7 +88,7 @@ final class HomePFCViewController: UIViewController {
     }
     
     private func outputBind() {
-        output.models.bind(onNext: { [self] response in
+        viewModel.output.models.bind(onNext: { [self] response in
             let totalCal = response.map {$0.calorie}.reduce(0, +)
             let totalP = response.map {$0.protein}.reduce(0, +)
             let totalF = response.map {$0.fat}.reduce(0, +)

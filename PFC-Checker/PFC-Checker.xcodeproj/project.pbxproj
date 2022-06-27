@@ -92,8 +92,8 @@
 		B4083AF22853901D00853E19 /* BMR.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BMR.storyboard; sourceTree = "<group>"; };
 		B4083AF4285439B800853E19 /* calculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calculation.swift; sourceTree = "<group>"; };
 		B484AF6C28646FB00085B9E9 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
-		B493D8AB2858AB2B0021F52E /* PFC-CheckerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PFC-CheckerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B493D8AC2858AB2B0021F52E /* PFC-CheckerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PFC-CheckerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B493D8AB2858AB2B0021F52E /* PFC-CheckerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "PFC-CheckerTests.xctest"; path = "/Users/kimotokentaro/Desktop/myswift/PFC-Checker/PFC-Checker/build/Debug-iphoneos/PFC-CheckerTests.xctest"; sourceTree = "<absolute>"; };
+		B493D8AC2858AB2B0021F52E /* PFC-CheckerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "PFC-CheckerUITests.xctest"; path = "/Users/kimotokentaro/Desktop/myswift/PFC-Checker/PFC-Checker/build/Debug-iphoneos/PFC-CheckerUITests.xctest"; sourceTree = "<absolute>"; };
 		B493D8AD2858BA5F0021F52E /* BMRModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMRModel.swift; sourceTree = "<group>"; };
 		B4F8AD792856CC3700023556 /* EurekaTagString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EurekaTagString.swift; sourceTree = "<group>"; };
 		B4F8AD7B2856CEA100023556 /* PFC-Checker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PFC-Checker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,8 +141,6 @@
 				B4083A9F2853607B00853E19 /* PFC-CheckerTests */,
 				B4083AA92853607B00853E19 /* PFC-CheckerUITests */,
 				B4F8AD7B2856CEA100023556 /* PFC-Checker.app */,
-				B493D8AB2858AB2B0021F52E /* PFC-CheckerTests.xctest */,
-				B493D8AC2858AB2B0021F52E /* PFC-CheckerUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};

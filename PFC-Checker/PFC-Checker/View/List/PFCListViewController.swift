@@ -15,9 +15,7 @@ import DZNEmptyDataSet
 final class PFCListViewController: UIViewController {
     
     private let pfcListCell = "PFCListCell"
-    private let viewModel = PFCViewModel()
-    lazy var input: PFCViewModelInput = viewModel
-    lazy var output: PFCViewModelOutput = viewModel
+    private let viewModel: ViewModelType = PFCViewModel()
     private let disposeBug = DisposeBag()
     private var editflag = false
     private let generator = UIImpactFeedbackGenerator(style: .heavy)
@@ -41,7 +39,7 @@ final class PFCListViewController: UIViewController {
     }
     
     func bind() {
-        output.changeModelsObservable.subscribe(onNext: { dd in
+        viewModel.output.changeModelsObservable.subscribe(onNext: { dd in
             self.pfcTableView.reloadData()
         })
     }
@@ -59,14 +57,14 @@ final class PFCListViewController: UIViewController {
 
 extension PFCListViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        output.pfcModels.count
+        viewModel.output.pfcModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: pfcListCell, for: indexPath) as? PFCListCell else {
             return UITableViewCell()
         }
-        cell.configure(model: output.pfcModels[indexPath.row])
+        cell.configure(model:viewModel.output.pfcModels[indexPath.row])
         cell.selectionStyle = .none
         cell.flagSwich.tag = indexPath.row
         cell.catchFlagDelegate = self
@@ -92,9 +90,9 @@ extension PFCListViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             try! realm.write {
-                realm.delete(self.output.pfcModels[indexPath.row])
+                realm.delete(self.viewModel.output.pfcModels[indexPath.row])
             }
-            output.update()
+            viewModel.output.update()
         }
     }
 }
@@ -102,13 +100,13 @@ extension PFCListViewController: UITableViewDelegate,UITableViewDataSource {
 extension PFCListViewController: CatchCountProtcol {
     func catchCount(row: Int, value: Int) {
         generator.impactOccurred()
-        input.catchCount(row: row, value: value)
+        viewModel.input.catchCount(row: row, value: value)
     }
 }
 
 extension PFCListViewController: CatchFlagProtcol {
     func CatchFlag(row: Int, flag: Bool) {
-        input.catchFlag(row: row, flag: flag)
+        viewModel.input.catchFlag(row: row, flag: flag)
     }
 }
 
