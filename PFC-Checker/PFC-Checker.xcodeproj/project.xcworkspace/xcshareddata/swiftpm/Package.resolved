@@ -33,7 +33,7 @@
       "location" : "https://github.com/xmartlabs/Eureka",
       "state" : {
         "branch" : "master",
-        "revision" : "cd2a28549fc623dbd84e27fe1f063c2fbf40ccac"
+        "revision" : "d5225fc93678c000e07c0e1676e292fad4b95fc4"
       }
     },
     {
@@ -60,7 +60,7 @@
       "location" : "https://github.com/realm/realm-swift",
       "state" : {
         "branch" : "master",
-        "revision" : "d02407e9cc22758aa8d20f0a5dd172598bdf9212"
+        "revision" : "9f7a605dfcf6a60e019a296dc8d91c3b23837a82"
       }
     },
     {
