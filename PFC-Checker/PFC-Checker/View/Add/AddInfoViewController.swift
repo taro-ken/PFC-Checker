@@ -12,9 +12,7 @@ import Eureka
 
 final class AddInfoViewController: FormViewController {
     
-    private let viewModel = PFCViewModel()
-    private lazy var input: PFCViewModelInput = viewModel
-    private lazy var output: PFCViewModelOutput = viewModel
+    private let viewModel: ViewModelType = PFCViewModel()
     private let disposeBug = DisposeBag()
     private var swichFlag:Bool = true
     private var hoge: Double = Double()
@@ -46,7 +44,7 @@ final class AddInfoViewController: FormViewController {
         else {
             return
         }
-        input.addInfo(name: nameRow, protein: pRow, fat: fRow, carb: cRow, calorie: calRow, unit: unitRow, unitValue: Int(unitValueRow), flag: swichRow)
+        viewModel.input.addInfo(name: nameRow, protein: pRow, fat: fRow, carb: cRow, calorie: calRow, unit: unitRow, unitValue: Int(unitValueRow), flag: swichRow)
         self.navigationController?.popViewController(animated: true)
     }
 }

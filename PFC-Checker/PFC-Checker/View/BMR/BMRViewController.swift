@@ -21,9 +21,7 @@ final class BMRViewController: UIViewController {
     @IBOutlet weak var calculationButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
-    private let viewModel = PFCViewModel()
-    private lazy var input: PFCViewModelInput = viewModel
-    private lazy var output: PFCViewModelOutput = viewModel
+    private let viewModel: ViewModelType = PFCViewModel()
     private let disposeBug = DisposeBag()
     
     override func viewDidLoad() {
@@ -64,12 +62,12 @@ final class BMRViewController: UIViewController {
     }
     
     @IBAction func tappedCalculationButton(_ sender: Any) {
-        input.bmrCalculation(sex: sexState.selectedSegmentIndex, age: ageTextField.text, tool: toolTextField.text, weight: weightTextField.text, active: activeState.selectedSegmentIndex)
+        viewModel.input.bmrCalculation(sex: sexState.selectedSegmentIndex, age: ageTextField.text, tool: toolTextField.text, weight: weightTextField.text, active: activeState.selectedSegmentIndex)
     }
     
     private func bind() {
-        output.bmrValue.bind(to: bmrLabel.rx.text).disposed(by: disposeBug)
-        output.totalBMRValue.bind(to: totalBMRLabel.rx.text).disposed(by: disposeBug)
+        viewModel.output.bmrValue.bind(to: bmrLabel.rx.text).disposed(by: disposeBug)
+        viewModel.output.totalBMRValue.bind(to: totalBMRLabel.rx.text).disposed(by: disposeBug)
     }
 }
 

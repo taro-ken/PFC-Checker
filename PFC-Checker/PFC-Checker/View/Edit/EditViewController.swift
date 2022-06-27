@@ -12,9 +12,7 @@ import Eureka
 
 final class EditViewController: FormViewController {
     
-    private let viewModel = PFCViewModel()
-    private lazy var input: PFCViewModelInput = viewModel
-    private lazy var output: PFCViewModelOutput = viewModel
+    private let viewModel: ViewModelType = PFCViewModel()
     private let disposeBug = DisposeBag()
     private let realm = try! Realm()
     private  var swichFlag:Bool = Bool()
@@ -46,7 +44,7 @@ final class EditViewController: FormViewController {
         else {
             return
         }
-        input.editInfo(name: nameRow, protein: pRow, fat: fRow, carb: cRow, calorie: calRow, unit: unitRow, flag: swichRow, row: row)
+        viewModel.input.editInfo(name: nameRow, protein: pRow, fat: fRow, carb: cRow, calorie: calRow, unit: unitRow, flag: swichRow, row: row)
         self.navigationController?.popViewController(animated: true)
     }
 }

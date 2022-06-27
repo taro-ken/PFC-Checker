@@ -22,10 +22,7 @@ final class EditBMRViewController: UIViewController {
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var editCalculationButton: UIButton!
     
-    private let viewModel = PFCViewModel()
-    
-    private lazy var input: PFCViewModelInput = viewModel
-    private lazy var output: PFCViewModelOutput = viewModel
+    private let viewModel: ViewModelType = PFCViewModel()
     private let disposeBug = DisposeBag()
     
     override func viewDidLoad() {
@@ -68,12 +65,12 @@ final class EditBMRViewController: UIViewController {
     }
     
     @IBAction func tappedCalculationButton(_ sender: Any) {
-        input.bmrCalculation(sex: editSexState.selectedSegmentIndex, age: editAgeTextField.text, tool: editToolTextField.text, weight: editWeightTextField.text, active: editActiveState.selectedSegmentIndex)
+        viewModel.input.bmrCalculation(sex: editSexState.selectedSegmentIndex, age: editAgeTextField.text, tool: editToolTextField.text, weight: editWeightTextField.text, active: editActiveState.selectedSegmentIndex)
     }
     
     private func bind() {
-        output.bmrValue.bind(to: editBMRLabel.rx.text).disposed(by: disposeBug)
-        output.totalBMRValue.bind(to: editTotalBMRLabel.rx.text).disposed(by: disposeBug)
+        viewModel.output.bmrValue.bind(to: editBMRLabel.rx.text).disposed(by: disposeBug)
+        viewModel.output.totalBMRValue.bind(to: editTotalBMRLabel.rx.text).disposed(by: disposeBug)
     }
 }
 
@@ -113,4 +110,3 @@ extension EditBMRViewController {
         editTotalBMRLabel.text = dataModel.total
     }
 }
-
