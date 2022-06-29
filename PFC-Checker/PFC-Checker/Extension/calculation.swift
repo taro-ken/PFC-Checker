@@ -8,8 +8,8 @@
 import Foundation
 
 final class calculation {
-    static func calculation(totalPFC: Int,totalCal: Int) -> Int {
-        let value: Double =  Double(totalPFC) / Double(totalCal)
+    static func calculation(totalPFC: Double,totalCal: Double) -> Int {
+        let value: Double =  totalPFC / totalCal
         let percentValue:Double = value * 100
         if percentValue.isNaN == true {
             return 0
@@ -80,5 +80,15 @@ final class calculation {
         let totalBMR =  value * superHigh
         let cutTotalBMR = round(totalBMR)
         return cutTotalBMR
+    }
+    
+    static func doubleToString(value: Double) -> String {
+        let decimal = value.truncatingRemainder(dividingBy: 1)
+
+        if abs(decimal.truncatingRemainder(dividingBy: 1)).isLess(than: .ulpOfOne) {
+            return String(format: "%.0f",value)
+        } else {
+            return String(format: "%.1f",value)
+        }
     }
 }

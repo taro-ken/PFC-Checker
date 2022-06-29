@@ -11,10 +11,10 @@ import RealmSwift
 import UIKit
 
 protocol PFCViewModelInput {
-    func addInfo(name: String?, protein: Double, fat: Double, carb: Double, calorie: Double, unit: String?, unitValue: Int, flag: Bool)
-    func catchCount(row: Int, value: Int)
+    func addInfo(name: String?, protein: Double, fat: Double, carb: Double, calorie: Double, unit: String?, countValue: Double, unitValue: Int, flag: Bool)
+    func catchCount(row: Int, value: Double)
     func catchFlag(row: Int, flag: Bool)
-    func editInfo(name: String?, protein: Double, fat: Double, carb: Double, calorie: Double, unit: String?, flag: Bool, row: Int)
+    func editInfo(name: String?, protein: Double, fat: Double, carb: Double, calorie: Double, unit: String?,unitValue: Int, flag: Bool, row: Int)
     var pValue: BehaviorRelay<Double?> { get }
     var fValue: BehaviorRelay<Double?> { get }
     var cValue: BehaviorRelay<Double?> { get }
@@ -52,63 +52,70 @@ final class PFCViewModel: PFCViewModelInput, PFCViewModelOutput, ViewModelType {
     
     //MARK: -/*inputについての記述*/
     private let addInfo = PublishRelay<PFCcomponentModel>()
-    func addInfo(name: String?,protein: Double,fat: Double,carb: Double,calorie: Double,unit: String?,unitValue: Int,flag: Bool) {
+    func addInfo(name: String?, protein: Double, fat: Double, carb: Double, calorie: Double, unit: String?, countValue: Double, unitValue: Int, flag: Bool) {
         guard let unit = unit else {
             return
         }
         let pfc = PFCcomponentModel()
         pfc.name = name
-        pfc.protein = protein * Double(unitValue)
-        pfc.fat = fat * Double(unitValue)
-        pfc.carb = carb * Double(unitValue)
-        pfc.calorie = calorie * Double(unitValue)
+        pfc.protein = protein
+        pfc.fat = fat
+        pfc.carb = carb
+        pfc.calorie = calorie
         pfc.unit = unit
         pfc.unitValue = unitValue
+        pfc.countValue = countValue
         pfc.flag = flag
+        pfc.totalProtein = protein * countValue
+        pfc.totalFat = fat * countValue
+        pfc.totalCarb = carb * countValue
+        pfc.totalCal = calorie * countValue
         try! realm.write() {
             realm.add(pfc)
             update()
         }
     }
     
-    func editInfo(name: String?, protein: Double, fat: Double, carb: Double, calorie: Double, unit: String?, flag: Bool, row: Int) {
+    func editInfo(name: String?, protein: Double, fat: Double, carb: Double, calorie: Double, unit: String?, unitValue: Int, flag: Bool, row: Int) {
         let pfcData = realm.objects(PFCcomponentModel.self)
-        let unitValue = pfcData[row].unitValue
         guard let unit = unit else {
             return
         }
         try! realm .write {
             pfcData[row].name = name
-            pfcData[row].protein = protein * Double(unitValue)
-            pfcData[row].fat = fat * Double(unitValue)
-            pfcData[row].carb = carb * Double(unitValue)
-            pfcData[row].calorie = calorie * Double(unitValue)
+            pfcData[row].protein = protein
+            pfcData[row].fat = fat
+            pfcData[row].carb = carb
+            pfcData[row].calorie = calorie
             pfcData[row].unit = unit
+            pfcData[row].unitValue = unitValue
             pfcData[row].flag = flag
+            pfcData[row].totalProtein = protein * pfcData[row].countValue
+            pfcData[row].totalFat = fat * pfcData[row].countValue
+            pfcData[row].totalCarb = carb * pfcData[row].countValue
+            pfcData[row].totalCal = calorie * pfcData[row].countValue
             update()
         }
     }
     
-    func catchCount(row: Int, value: Int) {
-        let pfc = PFCcomponentModel()
+    func catchCount(row: Int, value: Double) {
         let pfcData = realm.objects(PFCcomponentModel.self)
-        let baseP = pfcData[row].protein / Double(pfcData[row].unitValue)
-        let baseF = pfcData[row].fat / Double(pfcData[row].unitValue)
-        let baseC = pfcData[row].carb / Double(pfcData[row].unitValue)
-        let baseCalorie = pfcData[row].calorie / Double(pfcData[row].unitValue)
+        let baseP = pfcData[row].totalProtein / pfcData[row].countValue
+        let baseF = pfcData[row].totalFat / pfcData[row].countValue
+        let baseC = pfcData[row].totalCarb / pfcData[row].countValue
+        let baseCalorie = pfcData[row].totalCal / pfcData[row].countValue
         
         try! realm.write {
-            pfcData[row].unitValue = (pfcData[row].unitValue / pfcData[row].unitValue) * value
-            pfcData[row].protein = baseP * Double(value)
-            pfcData[row].fat = baseF * Double(value)
-            pfcData[row].carb = baseC * Double(value)
-            pfcData[row].calorie = baseCalorie * Double(value)
+            pfcData[row].countValue = value
+            pfcData[row].totalProtein = baseP * value
+            pfcData[row].totalFat = baseF * value
+            pfcData[row].totalCarb = baseC * value
+            pfcData[row].totalCal = baseCalorie * value
             update()
         }
     }
     
     func catchFlag(row: Int, flag: Bool) {
-        print(row)
         let pfcData = realm.objects(PFCcomponentModel.self)
         try! realm.write {
             pfcData[row].flag = flag

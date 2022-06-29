@@ -81,7 +81,6 @@ final class HomePFCViewController: UIViewController {
             let vc = UIStoryboard.init(name: "BMR", bundle: nil).instantiateInitialViewController() as! BMRViewController
             self.navigationController?.pushViewController(vc, animated: true)
         } else {
-            print("データあるよ")
             let vc = UIStoryboard.init(name: "EditBMR", bundle: nil).instantiateInitialViewController() as! EditBMRViewController
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -89,18 +88,18 @@ final class HomePFCViewController: UIViewController {
     
     private func outputBind() {
         viewModel.output.models.bind(onNext: { [self] response in
-            let totalCal = response.map {$0.calorie}.reduce(0, +)
-            let totalP = response.map {$0.protein}.reduce(0, +)
-            let totalF = response.map {$0.fat}.reduce(0, +)
-            let totalC = response.map {$0.carb}.reduce(0, +)
+            let totalCal = response.map {$0.totalCal}.reduce(0, +)
+            let totalP = response.map {$0.totalProtein}.reduce(0, +)
+            let totalF = response.map {$0.totalFat}.reduce(0, +)
+            let totalC = response.map {$0.totalCarb}.reduce(0, +)
             totalCalValue = Int(totalCal)
-            totalCalLabel.text = "\(Int(totalCal).description)kcal"
-            proteinGramLabel.text = "\(Int(totalP).description)g"
-            fatGramLabel.text = "\(Int(totalF).description)g"
-            carbGramLabel.text = "\(Int(totalC).description)g"
-            pChartValue = calculation.calculation(totalPFC: Int(totalP) * 4, totalCal: Int(totalCal))
-            fChartValue = calculation.calculation(totalPFC: Int(totalF) * 9, totalCal: Int(totalCal))
-            cChartValue = calculation.calculation(totalPFC: Int(totalC) * 4, totalCal: Int(totalCal))
+            totalCalLabel.text = "\(calculation.doubleToString(value: totalCal))kcal"
+            proteinGramLabel.text = "\(calculation.doubleToString(value: totalP))g"
+            fatGramLabel.text = "\(calculation.doubleToString(value: totalF))g"
+            carbGramLabel.text = "\(calculation.doubleToString(value: totalC))g"
+            pChartValue = calculation.calculation(totalPFC: totalP * 4, totalCal: totalCal)
+            fChartValue = calculation.calculation(totalPFC: totalF * 9, totalCal: totalCal)
+            cChartValue = calculation.calculation(totalPFC: totalC * 4, totalCal: totalCal)
         }).disposed(by: disposeBug)
     }
 }
@@ -171,8 +170,6 @@ extension HomePFCViewController {
             return
         }
         let diffCalValue = totalCalValue - totalBMR
-      //  diffCalLabel.text = "未設定"
-        
         if totalBMR == 0 {
             totalBMRLabel.text = "消費カロリーを設定してください"
         } else {
