@@ -16,6 +16,11 @@ final class PFCcomponentModel: Object {
     @objc dynamic var calorie: Double = 0
     @objc dynamic var unit: String = ""
     @objc dynamic var unitValue: Int = 0
+    @objc dynamic var countValue: Double = 1
     @objc dynamic var flag: Bool = true
+    @objc dynamic var totalProtein: Double = 0
+    @objc dynamic var totalFat: Double = 0
+    @objc dynamic var totalCarb: Double = 0
+    @objc dynamic var totalCal: Double = 0
 }
 

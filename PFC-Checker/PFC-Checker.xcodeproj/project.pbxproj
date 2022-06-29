@@ -12,7 +12,6 @@
 		B4081A1E285B025900057894 /* EditBMR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4081A1D285B025900057894 /* EditBMR.storyboard */; };
 		B4083A8A2853607800853E19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083A892853607800853E19 /* AppDelegate.swift */; };
 		B4083A8C2853607800853E19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083A8B2853607800853E19 /* SceneDelegate.swift */; };
-		B4083A932853607A00853E19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4083A922853607A00853E19 /* Assets.xcassets */; };
 		B4083A962853607A00853E19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4083A942853607A00853E19 /* LaunchScreen.storyboard */; };
 		B4083AA12853607B00853E19 /* PFC_CheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AA02853607B00853E19 /* PFC_CheckerTests.swift */; };
 		B4083AAB2853607B00853E19 /* PFC_CheckerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AAA2853607B00853E19 /* PFC_CheckerUITests.swift */; };
@@ -40,6 +39,7 @@
 		B4083AF12853900D00853E19 /* BMRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AF02853900D00853E19 /* BMRViewController.swift */; };
 		B4083AF32853901D00853E19 /* BMR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4083AF22853901D00853E19 /* BMR.storyboard */; };
 		B4083AF5285439B800853E19 /* calculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4083AF4285439B800853E19 /* calculation.swift */; };
+		B4255A92286C134100649597 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4255A91286C134100649597 /* Assets.xcassets */; };
 		B484AF6B286467500085B9E9 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B484AF6A286467500085B9E9 /* IQKeyboardManagerSwift */; };
 		B484AF6D28646FB00085B9E9 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B484AF6C28646FB00085B9E9 /* ShadowView.swift */; };
 		B493D8AE2858BA5F0021F52E /* BMRModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B493D8AD2858BA5F0021F52E /* BMRModel.swift */; };
@@ -69,7 +69,6 @@
 		B4081A1D285B025900057894 /* EditBMR.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditBMR.storyboard; sourceTree = "<group>"; };
 		B4083A892853607800853E19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4083A8B2853607800853E19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B4083A922853607A00853E19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4083A952853607A00853E19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4083A972853607A00853E19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4083AA02853607B00853E19 /* PFC_CheckerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PFC_CheckerTests.swift; sourceTree = "<group>"; };
@@ -91,6 +90,7 @@
 		B4083AF02853900D00853E19 /* BMRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMRViewController.swift; sourceTree = "<group>"; };
 		B4083AF22853901D00853E19 /* BMR.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BMR.storyboard; sourceTree = "<group>"; };
 		B4083AF4285439B800853E19 /* calculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calculation.swift; sourceTree = "<group>"; };
+		B4255A91286C134100649597 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B47BDE2D2869C3DC004B9C47 /* PFC-CheckerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PFC-CheckerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47BDE2E2869C3DC004B9C47 /* PFC-CheckerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PFC-CheckerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B484AF6C28646FB00085B9E9 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
@@ -258,8 +258,8 @@
 			isa = PBXGroup;
 			children = (
 				B4083A892853607800853E19 /* AppDelegate.swift */,
+				B4255A91286C134100649597 /* Assets.xcassets */,
 				B4083A8B2853607800853E19 /* SceneDelegate.swift */,
-				B4083A922853607A00853E19 /* Assets.xcassets */,
 				B4083A942853607A00853E19 /* LaunchScreen.storyboard */,
 			);
 			path = Resource;
@@ -414,8 +414,8 @@
 				B4083AE5285363B200853E19 /* PFCList.storyboard in Resources */,
 				B4083ADE285363B200853E19 /* HomePFC.storyboard in Resources */,
 				B4083A962853607A00853E19 /* LaunchScreen.storyboard in Resources */,
+				B4255A92286C134100649597 /* Assets.xcassets in Resources */,
 				B4083AF32853901D00853E19 /* BMR.storyboard in Resources */,
-				B4083A932853607A00853E19 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,8 +753,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZCR4QT36HT;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -772,7 +772,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "swift-tk.PFC-Checker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "PFC-Checker";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -784,8 +784,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZCR4QT36HT;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -803,7 +803,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "swift-tk.PFC-Checker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "PFC-Checker";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -9,14 +9,14 @@ import UIKit
 
 final class PFCListCell: UITableViewCell {
     
-    
     @IBOutlet weak var PFCname: UILabel!
     @IBOutlet weak var proteinValue: UILabel!
     @IBOutlet weak var fatValue: UILabel!
     @IBOutlet weak var carbValue: UILabel!
     @IBOutlet weak var calorieValue: UILabel!
     @IBOutlet weak var unitValue: UILabel!
-    @IBOutlet weak var countStepper: UIStepper!
+   
+    @IBOutlet weak var countChange: UIButton!
     @IBOutlet weak var flagSwich: UISwitch!
     @IBOutlet weak var mainBackground: UIView!
     @IBOutlet weak var shadowLayer: UIView!
@@ -24,15 +24,15 @@ final class PFCListCell: UITableViewCell {
     private var swichFlag: Bool = true
      var catchCountDelegate: CatchCountProtcol?
      var catchFlagDelegate: CatchFlagProtcol?
-    var countvalue:Int = Int()
-    
+   
     override func awakeFromNib() {
         super.awakeFromNib()
+        countChange.titleLabel?.text = nil
+        countChange.layer.cornerRadius = 10
         flagSwich.addTarget(self, action: #selector(swichFlag(_:)), for: .touchUpInside)
-        countStepper.addTarget(self, action: #selector(tapStepper(_:)), for: .touchUpInside)
+        countChange.addTarget(self, action: #selector(tapCountChange(_:)), for: .touchUpInside)
         PFCname.font = UIFont(name: "pingfanghk-Medium", size: 20)
         unitValue.font = UIFont(name: "pingfanghk-Medium", size: 15)
-        
     }
     
     @objc func swichFlag(_ sender: UISwitch) {
@@ -47,28 +47,27 @@ final class PFCListCell: UITableViewCell {
         self.catchFlagDelegate?.CatchFlag(row: row, flag: swichFlag)
     }
     
-    @objc func tapStepper(_ sender: UIStepper) {
+    @objc func tapCountChange(_ sender: UIButton) {
         let row = sender.tag
-        let value = Int(sender.value)
-        self.catchCountDelegate?.catchCount(row: row, value: value)
+        self.catchCountDelegate?.catchCount(row: row)
     }
 
     func configure(model: PFCcomponentModel) {
         self.mainBackground.layer.cornerRadius = 8
         self.mainBackground.layer.masksToBounds = true
         PFCname.text = model.name
-        proteinValue.text = "P/ \(Int(model.protein))g"
-        fatValue.text = "F/ \(Int(model.fat))g"
-        carbValue.text = "C/ \(Int(model.carb))g"
-        calorieValue.text = "\(Int(model.calorie))kcal"
-        unitValue.text = "\(model.unitValue)\(model.unit)"
+        proteinValue.text = "P/ \(calculation.doubleToString(value: model.totalProtein))g"
+        fatValue.text = "F/ \(calculation.doubleToString(value: model.totalFat))g"
+        carbValue.text = "C/ \(calculation.doubleToString(value: model.totalCarb))g"
+        calorieValue.text = "\(calculation.doubleToString(value: model.totalCal))kcal"
+        unitValue.text = "\(calculation.doubleToString(value: Double(model.unitValue) * model.countValue)) \(model.unit)"
         flagSwich.isOn = model.flag
-        countStepper.value = Double(model.unitValue)
+        countChange.setTitle("\(calculation.doubleToString(value: model.countValue))", for: .normal)
     }
 }
 
 protocol CatchCountProtcol {
-    func catchCount(row: Int,value: Int)
+    func catchCount(row: Int)
 }
 
 protocol CatchFlagProtcol {

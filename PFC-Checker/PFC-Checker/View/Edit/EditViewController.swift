@@ -40,11 +40,12 @@ final class EditViewController: FormViewController {
               let cRow = (self.form.rowBy(tag: EurekaTagString.settingC) as! DecimalRow).value,
               let calRow = (self.form.rowBy(tag: EurekaTagString.settingCal) as! DecimalRow).value,
               let unitRow = (self.form.rowBy(tag: EurekaTagString.settingUnit) as! TextRow).value,
+              let unitValueRow = (self.form.rowBy(tag: EurekaTagString.settingUnitValue) as! IntRow).value,
               let swichRow = (self.form.rowBy(tag: EurekaTagString.settingSwich) as! SwitchRow).value
         else {
             return
         }
-        viewModel.input.editInfo(name: nameRow, protein: pRow, fat: fRow, carb: cRow, calorie: calRow, unit: unitRow, flag: swichRow, row: row)
+        viewModel.input.editInfo(name: nameRow, protein: pRow, fat: fRow, carb: cRow, calorie: calRow, unit: unitRow, unitValue: unitValueRow, flag: swichRow, row: row)
         self.navigationController?.popViewController(animated: true)
     }
 }
@@ -52,7 +53,7 @@ final class EditViewController: FormViewController {
 extension EditViewController {
     private func formSetUp() {
         let data = realm.objects(PFCcomponentModel.self)
-        let unitValue = Double(data[row].unitValue)
+        let countValue = Double(data[row].countValue)
         form +++ Section()
         <<< TextRow(EurekaTagString.settingName){
             $0.title = EurekaTagString.settingName
@@ -68,26 +69,11 @@ extension EditViewController {
         }
         
         form +++ Section()
-        <<< TextRow(EurekaTagString.settingUnit){
-            $0.title = EurekaTagString.settingUnit
-            $0.placeholder = "例 100g,1個,1パック"
-            $0.tag = EurekaTagString.settingUnit
-            $0.add(rule: RuleRequired())
-            $0.validationOptions = .validatesOnChange
-            $0.value = data[row].unit
-            
-        }.cellUpdate { cell, row in
-            if !row.isValid {
-                cell.titleLabel?.textColor = .systemRed
-            }
-        }
-        
-        form +++ Section()
         <<< DecimalRow (EurekaTagString.settingP){
             $0.title = EurekaTagString.settingP
             $0.placeholder = "値を入力"
             $0.tag = EurekaTagString.settingP
-            $0.value = Double(data[row].protein) / unitValue
+            $0.value = Double(data[row].protein)
             
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnChange
@@ -97,7 +83,7 @@ extension EditViewController {
              numberFormatter.maximumFractionDigits = 1
              numberFormatter.numberStyle = NumberFormatter.Style.decimal
             $0.formatter = numberFormatter
-        }.cellUpdate { [self] cell, row in
+        }.cellUpdate { cell, row in
             if !row.isValid {
                 cell.titleLabel?.textColor = .systemRed
             }
@@ -107,7 +93,7 @@ extension EditViewController {
             $0.title = EurekaTagString.settingF
             $0.placeholder = "値を入力"
             $0.tag = EurekaTagString.settingF
-            $0.value = Double(data[row].fat) / unitValue
+            $0.value = Double(data[row].fat)
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnChange
             $0.useFormatterOnDidBeginEditing = false
@@ -116,7 +102,7 @@ extension EditViewController {
              numberFormatter.maximumFractionDigits = 1
              numberFormatter.numberStyle = NumberFormatter.Style.decimal
             $0.formatter = numberFormatter
-        }.cellUpdate { [self] cell, row in
+        }.cellUpdate { cell, row in
             if !row.isValid {
                 cell.titleLabel?.textColor = .systemRed
             }
@@ -126,7 +112,47 @@ extension EditViewController {
             $0.title = EurekaTagString.settingC
             $0.placeholder = "値を入力"
             $0.tag = EurekaTagString.settingC
-            $0.value = Double(data[row].carb) / unitValue
+            $0.value = Double(data[row].carb)
+            $0.add(rule: RuleRequired())
+            $0.validationOptions = .validatesOnChange
+            $0.useFormatterOnDidBeginEditing = false
+            $0.useFormatterDuringInput = false
+            let numberFormatter = NumberFormatter()
+             numberFormatter.maximumFractionDigits = 1
+             numberFormatter.numberStyle = NumberFormatter.Style.decimal
+            $0.formatter = numberFormatter
+        }.cellUpdate { cell, row in
+            if !row.isValid {
+                cell.titleLabel?.textColor = .systemRed
+            }
+        }
+        
+        <<< DecimalRow(EurekaTagString.settingCal){
+            $0.title = EurekaTagString.settingCal
+            $0.placeholder = "値を入力"
+            $0.tag = EurekaTagString.settingCal
+            $0.value = Double(data[row].calorie)
+            $0.add(rule: RuleRequired())
+            $0.validationOptions = .validatesOnChange
+            $0.useFormatterOnDidBeginEditing = false
+            $0.useFormatterDuringInput = false
+            let numberFormatter = NumberFormatter()
+             numberFormatter.maximumFractionDigits = 1
+             numberFormatter.numberStyle = NumberFormatter.Style.decimal
+            $0.formatter = numberFormatter
+        }.cellUpdate { cell, row in
+            if !row.isValid {
+                cell.titleLabel?.textColor = .systemRed
+            }
+        }
+        
+        form +++ Section()
+        <<< IntRow(EurekaTagString.settingUnitValue){
+            $0.title = EurekaTagString.settingUnitValue
+            $0.placeholder = "1単位あたりの量"
+            $0.tag = EurekaTagString.settingUnitValue
+            $0.value = data[row].unitValue
+            
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnChange
             $0.useFormatterOnDidBeginEditing = false
@@ -141,20 +167,15 @@ extension EditViewController {
             }
         }
         
-        <<< DecimalRow(EurekaTagString.settingCal){
-            $0.title = EurekaTagString.settingCal
-            $0.placeholder = "値を入力"
-            $0.tag = EurekaTagString.settingCal
-            $0.value = Double(data[row].calorie) / unitValue
+        <<< TextRow(EurekaTagString.settingUnit){
+            $0.title = EurekaTagString.settingUnit
+            $0.placeholder = "例 g,個,パック"
+            $0.tag = EurekaTagString.settingUnit
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnChange
-            $0.useFormatterOnDidBeginEditing = false
-            $0.useFormatterDuringInput = false
-            let numberFormatter = NumberFormatter()
-             numberFormatter.maximumFractionDigits = 1
-             numberFormatter.numberStyle = NumberFormatter.Style.decimal
-            $0.formatter = numberFormatter
-        }.cellUpdate { [self] cell, row in
+            $0.value = data[row].unit
+            
+        }.cellUpdate { cell, row in
             if !row.isValid {
                 cell.titleLabel?.textColor = .systemRed
             }

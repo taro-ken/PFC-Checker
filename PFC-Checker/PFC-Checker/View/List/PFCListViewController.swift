@@ -68,7 +68,7 @@ extension PFCListViewController: UITableViewDelegate,UITableViewDataSource {
         cell.selectionStyle = .none
         cell.flagSwich.tag = indexPath.row
         cell.catchFlagDelegate = self
-        cell.countStepper.tag = indexPath.row
+        cell.countChange.tag = indexPath.row
         cell.catchCountDelegate = self
         return cell
     }
@@ -98,9 +98,37 @@ extension PFCListViewController: UITableViewDelegate,UITableViewDataSource {
 }
 
 extension PFCListViewController: CatchCountProtcol {
-    func catchCount(row: Int, value: Int) {
+    func catchCount(row: Int) {
         generator.impactOccurred()
-        viewModel.input.catchCount(row: row, value: value)
+    
+        let alert = UIAlertController(title: "数量を変更",
+                                      message: nil,
+                                      preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
+        alert.addTextField { [self] (textField) in
+            textField.placeholder = "数値を入力　例:0.5, 1, 1.5"
+            textField.keyboardType = .decimalPad
+        }
+        alert.addAction(UIAlertAction(title: "保存", style: .default, handler: { [weak self] (_) in
+            
+            if alert.textFields?.first?.text == "" {
+                let dialog = UIAlertController(title: "未入力", message: "数値を入力してください", preferredStyle: .alert)
+                dialog.addAction(UIAlertAction(title: "OK", style: .default))
+                self?.present(dialog, animated: true, completion: nil)
+                return
+            } else if alert.textFields?.first?.text == "0" {
+                let dialog = UIAlertController(title: "エラー", message: "0以上の数値を入力してください", preferredStyle: .alert)
+                dialog.addAction(UIAlertAction(title: "OK", style: .default))
+                self?.present(dialog, animated: true, completion: nil)
+                return
+            }
+            guard let text = alert.textFields?.first?.text,
+                  let intText = Double(text)  else {
+                return
+            }
+            self?.viewModel.input.catchCount(row: row, value: round(intText * 10) / 10)
+        }))
+        present(alert, animated: true, completion: nil)
     }
 }
 
