@@ -31,8 +31,6 @@ final class PFCListCell: UITableViewCell {
         countChange.layer.cornerRadius = 10
         flagSwich.addTarget(self, action: #selector(swichFlag(_:)), for: .touchUpInside)
         countChange.addTarget(self, action: #selector(tapCountChange(_:)), for: .touchUpInside)
-        PFCname.font = UIFont(name: "pingfanghk-Medium", size: 20)
-        unitValue.font = UIFont(name: "pingfanghk-Medium", size: 15)
     }
     
     @objc func swichFlag(_ sender: UISwitch) {
